@@ -162,4 +162,14 @@ public class HomeActivity extends Activity {
     public void openAdd(View v){
         startActivity(new Intent(this,AddActivity.class));
     }
+
+    //============= 任务清单 ======================
+    //TODO 实现保存添加星星
+    //TODO 实现使用星星
+    //TODO 实现友盟SDK
+
+    //TODO 实现记录查看
+    //TODO 实现密码设置
+    //TODO 实现保存到百度云盘
+
 }
