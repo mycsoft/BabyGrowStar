@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">BabyGrowStar</string>
+    <string name="app_name">宝贝成长星星</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_button">添加星星</string>
+    <string name="dummy_content">宝贝\n成长星星</string>
+    <string name="title_activity_add">添加星星</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

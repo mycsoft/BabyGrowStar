@@ -1,9 +1,11 @@
-package cn.mycsoft.babygrowstar;
+package cn.mycsoft.babygrowstar.act;
 
+import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -155,5 +157,9 @@ public class HomeActivity extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    public void openAdd(View v){
+        startActivity(new Intent(this,AddActivity.class));
     }
 }

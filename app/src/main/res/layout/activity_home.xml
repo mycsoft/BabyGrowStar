@@ -5,15 +5,58 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/dummy_content" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
         android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center"
+                android:foregroundGravity="fill_horizontal"
+                android:src="@drawable/star"
+                android:layout_margin="8dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:keepScreenOn="true" android:textColor="#33b5e5"
+                android:textStyle="bold" android:textSize="50sp" android:gravity="center"
+                android:text="@string/dummy_content" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:padding="8dp">
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ratingBar"
+                    android:stepSize="1"
+                    android:rating="1"
+                    android:numStars="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="50"
+                    android:id="@+id/textView"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="36sp"
+                    android:layout_margin="6dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
             android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -23,7 +66,9 @@
 
             <Button android:id="@+id/dummy_button" style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="@string/dummy_button" />
+                android:layout_weight="1" android:text="@string/dummy_button"
+                android:clickable="true"
+                android:onClick="openAdd" />
 
         </LinearLayout>
     </FrameLayout>
