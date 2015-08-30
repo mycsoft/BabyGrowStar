@@ -1,18 +1,29 @@
 package cn.mycsoft.babygrowstar.act;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.entity.StarRecord;
 
-public class AddActivity extends Activity {
+public class AddActivity extends AbstractActivity {
+
+    EditText numberEt;
+    EditText descEt;
+    EditText dateEt;
+    EditText timeEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        numberEt = (EditText)findViewById(R.id.number);
+        descEt = (EditText)findViewById(R.id.desc);
+        dateEt = (EditText)findViewById(R.id.date);
+        timeEt = (EditText)findViewById(R.id.time);
     }
 
     @Override
@@ -35,5 +46,16 @@ public class AddActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 保存星星
+     */
+    public void save(View view) {
+        StarRecord star = new StarRecord();
+        star.setNumber(Integer.parseInt(numberEt.getText().toString()));
+        star.setType(StarRecord.Type.add);
+        getController().insertStart(star);
+        finish();
     }
 }

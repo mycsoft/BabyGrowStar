@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -18,12 +19,12 @@ import android.view.View;
  *
  * @see SystemUiHider
  */
-public class HomeActivity extends Activity {
+public class HomeActivity extends AbstractActivity{
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
-    private static final boolean AUTO_HIDE = true;
+    private static final boolean AUTO_HIDE = false;
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -47,12 +48,14 @@ public class HomeActivity extends Activity {
      */
     private SystemUiHider mSystemUiHider;
 
+    private TextView numberView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
-
+        numberView = (TextView)findViewById(R.id.star_number);
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
 
@@ -159,12 +162,24 @@ public class HomeActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int c = getController().queryStarTotal();
+        numberView.setText(String.valueOf(c));
+    }
+
     public void openAdd(View v){
         startActivity(new Intent(this,AddActivity.class));
     }
 
     //============= 任务清单 ======================
     //TODO 实现保存添加星星
+    //======== 数据库设计 ==========
+    //使用记录
+    //
+
     //TODO 实现使用星星
     //TODO 实现友盟SDK
 

@@ -50,7 +50,7 @@
                     android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="50"
-                    android:id="@+id/textView"
+                    android:id="@+id/star_number"
                     android:layout_gravity="center_vertical"
                     android:textSize="36sp"
                     android:layout_margin="6dp" />

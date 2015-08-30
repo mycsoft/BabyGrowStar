@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">宝贝成长星星</string>
 
@@ -6,4 +7,20 @@
     <string name="title_activity_add">添加星星</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
+
+    <!--<string name="sql_star_create">c</string>-->
+    <string name="sql_star_create">
+    create table star_record (
+    _id Integer PRIMARY KEY AUTOINCREMENT,
+    number Integer not null,
+    time Long not null,
+    type Varchar,
+    `desc` varchar
+    )
+    </string>
+    <!--<string name="sql_star_insert">insert into star_record (number,`desc`,type) value(%d,%s,%s)</string>-->
+    <string name="sql_star_insert">insert into star_record (number,`desc`,type) value(%1$d,%2$s,%3$s)</string>
+    <string name="sql_star_total" >select sum(number) from star_record</string>
 </resources>
