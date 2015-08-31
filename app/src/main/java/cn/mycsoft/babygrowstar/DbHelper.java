@@ -1,9 +1,12 @@
 package cn.mycsoft.babygrowstar;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 /**
  * Created by MaYichao on 2015/8/30.
@@ -19,10 +22,11 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.beginTransaction();
+//        db.beginTransaction();
 //        dbh.execSQL(StarRecord.Sql.CREATE);
         db.execSQL(context.getResources().getString(R.string.sql_star_create));
 //        db.close();
+//        db.endTransaction();
     }
 
     @Override
@@ -41,12 +45,34 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         db.execSQL(sql);
+
 //        db.close();
+        db.endTransaction();
     }
 
     public Cursor query(String sql) {
         SQLiteDatabase db = getReadableDatabase();
         return db.rawQuery(sql,null);
 
+    }
+
+    /**
+     * 添加星星
+     * @param star
+     * @return
+     */
+    public long insertStar(StarRecord star){
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.insert("star_record", null, star.toContentValues());
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        }finally {
+            db.endTransaction();
+
+        }
     }
 }

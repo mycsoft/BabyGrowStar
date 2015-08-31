@@ -96,7 +96,7 @@ public class HomeActivity extends AbstractActivity{
 
                         if (visible && AUTO_HIDE) {
                             // Schedule a hide().
-                            delayedHide(AUTO_HIDE_DELAY_MILLIS);
+//                            delayedHide(AUTO_HIDE_DELAY_MILLIS);
                         }
                     }
                 });
@@ -158,8 +158,8 @@ public class HomeActivity extends AbstractActivity{
      * previously scheduled calls.
      */
     private void delayedHide(int delayMillis) {
-        mHideHandler.removeCallbacks(mHideRunnable);
-        mHideHandler.postDelayed(mHideRunnable, delayMillis);
+//        mHideHandler.removeCallbacks(mHideRunnable);
+//        mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
 
@@ -175,7 +175,7 @@ public class HomeActivity extends AbstractActivity{
     }
 
     //============= 任务清单 ======================
-    //TODO 实现保存添加星星
+    //实现保存添加星星
     //======== 数据库设计 ==========
     //使用记录
     //

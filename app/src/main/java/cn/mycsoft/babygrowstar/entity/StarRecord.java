@@ -1,5 +1,7 @@
 package cn.mycsoft.babygrowstar.entity;
 
+import android.content.ContentValues;
+
 import java.util.Date;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Date;
  */
 public class StarRecord {
 
-    private int id;
+    private Integer id;
     /**
      * 调用时间
      */
@@ -66,12 +68,31 @@ public class StarRecord {
         this.desc = desc;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public ContentValues toContentValues() {
+        ContentValues cv = new ContentValues();
+        if (id != null){
+            cv.put("_id",id);
+        }
+
+        cv.put("number",number);
+        if (time != null){
+            cv.put("time",time.getTime());
+        }
+        if (desc != null){
+            cv.put("`desc`",desc);
+        }
+        if (type != null){
+            cv.put("type",type.toString());
+        }
+        return cv;
     }
 
     /**

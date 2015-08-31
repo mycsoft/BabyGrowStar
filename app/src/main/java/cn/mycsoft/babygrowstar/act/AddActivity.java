@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
@@ -55,7 +56,12 @@ public class AddActivity extends AbstractActivity {
         StarRecord star = new StarRecord();
         star.setNumber(Integer.parseInt(numberEt.getText().toString()));
         star.setType(StarRecord.Type.add);
-        getController().insertStart(star);
-        finish();
+        try {
+            getController().insertStart(star);
+            finish();
+        }catch (Exception e){
+            Toast.makeText(this, "保存失败!", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 }

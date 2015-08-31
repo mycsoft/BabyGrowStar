@@ -21,6 +21,6 @@
     )
     </string>
     <!--<string name="sql_star_insert">insert into star_record (number,`desc`,type) value(%d,%s,%s)</string>-->
-    <string name="sql_star_insert">insert into star_record (number,`desc`,type) value(%1$d,%2$s,%3$s)</string>
+    <string name="sql_star_insert">insert into star_record (number,`desc`,type,time) values (%1$d,%2$s,%3$s,%4$d)</string>
     <string name="sql_star_total" >select sum(number) from star_record</string>
 </resources>
