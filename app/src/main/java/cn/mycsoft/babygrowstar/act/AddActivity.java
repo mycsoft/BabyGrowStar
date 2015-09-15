@@ -1,5 +1,6 @@
 package cn.mycsoft.babygrowstar.act;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,10 @@ public class AddActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         numberEt = (EditText)findViewById(R.id.number);
         descEt = (EditText)findViewById(R.id.desc);
         dateEt = (EditText)findViewById(R.id.date);
@@ -42,8 +47,14 @@ public class AddActivity extends AbstractActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case android.R.id.home: //对用户按home icon的处理，本例只需关闭activity，就可返回上一activity，即主activity。
+                finish();
+                return true;
+            case R.id.action_settings: //对用户按设置的处理，本例只需关闭activity，就可返回上一activity，即主activity。
+                return true;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -64,4 +75,6 @@ public class AddActivity extends AbstractActivity {
             e.printStackTrace();
         }
     }
+
+
 }
