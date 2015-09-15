@@ -64,74 +64,89 @@
             <RelativeLayout style="@style/home_panel">
 
 
-                <TextView
-                    android:id="@+id/labelTotal"
-                    style="@style/home_label"
+                <LinearLayout
+                    android:id="@+id/star_line_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="当前" />
+                    android:orientation="horizontal">
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
+                    <TextView
+                        android:id="@+id/labelTotal"
+                        style="@style/home_label"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="当前" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toLeftOf="@+id/x"
+                        android:src="@android:drawable/star_big_on" />
+
+                    <TextView
+                        android:id="@+id/xTotal"
+                        style="@style/home_x"
+                        android:layout_toRightOf="@+id/ratingBar"
+                        android:text="X" />
+
+                    <TextView
+                        android:id="@+id/star_number"
+                        style="@style/home_star_number_text"
+                        android:layout_toRightOf="@+id/xTotal"
+                        android:text="50" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/star_line_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/labelTotal"
-                    android:numStars="1"
-                    android:rating="1"
-                    android:stepSize="1" />
+                    android:layout_below="@+id/star_line_1"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/xTotal"
-                    style="@style/home_x"
-                    android:layout_toRightOf="@+id/ratingBar"
-                    android:text="X" />
+                    <TextView
+                        android:id="@+id/labelToday"
+                        style="@style/home_label"
+                        android:layout_below="@+id/labelTotal"
+                        android:text="今天" />
 
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toLeftOf="@+id/x"
+                        android:src="@android:drawable/star_big_on" />
 
-                <TextView
-                    android:id="@+id/star_number"
-                    style="@style/home_star_number_text"
-                    android:layout_toRightOf="@+id/xTotal"
-                    android:text="50" />
+                    <TextView
+                        android:id="@+id/xToday"
+                        style="@style/home_x"
+                        android:layout_alignBaseline="@+id/labelToday"
+                        android:layout_toRightOf="@+id/ratingBarToday"
+                        android:text="X" />
 
-
-                <TextView
-                    android:id="@+id/labelToday"
-                    style="@style/home_label"
-                    android:layout_below="@+id/labelTotal"
-                    android:text="今天" />
-                <RatingBar
-                    android:id="@+id/ratingBarToday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/labelToday"
-                    android:layout_alignTop="@+id/labelToday"
-                    android:layout_toRightOf="@+id/labelToday"
-                    android:numStars="1"
-                    android:rating="1"
-                    android:stepSize="1" />
-
-                <TextView
-                    android:id="@+id/xToday"
-                    style="@style/home_x"
-                    android:layout_alignBottom="@+id/ratingBarToday"
-                    android:layout_toRightOf="@+id/ratingBarToday"
-                    android:text="X" />
-
-
-                <TextView
-                    android:id="@+id/star_numberToday"
-                    style="@style/home_star_number_text"
-                    android:layout_alignBottom="@+id/xToday"
-                    android:layout_toRightOf="@+id/xToday"
-                    android:text="50" />
+                    <TextView
+                        android:id="@+id/star_numberToday"
+                        style="@style/home_star_number_text"
+                        android:layout_alignBottom="@+id/xToday"
+                        android:layout_toRightOf="@+id/xToday"
+                        android:text="50" />
+                </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/btn_star_list"
+                    style="?metaButtonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/xToday"
+                    android:layout_alignBottom="@+id/star_line_2"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/labelTotal"
+                    android:layout_alignTop="@+id/star_line_1"
                     android:src="@drawable/abc_ic_go" />
 
                 <Button
@@ -139,7 +154,7 @@
                     style="?metaButtonBarButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/labelToday"
+                    android:layout_below="@+id/star_line_2"
                     android:layout_centerHorizontal="true"
                     android:layout_weight="1"
                     android:clickable="true"
@@ -155,7 +170,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:layout="@layout/fragment_payitem" />
 
 
         </LinearLayout>
