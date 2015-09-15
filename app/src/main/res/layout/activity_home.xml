@@ -12,65 +12,154 @@
         android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="true"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:showDividers="beginning|end">
+
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:id="@+id/imageView"
                 android:layout_gravity="center"
-                android:foregroundGravity="fill_horizontal"
-                android:src="@drawable/star"
                 android:layout_margin="8dp"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:foregroundGravity="fill_horizontal"
+                android:src="@drawable/star" />
 
-            <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:keepScreenOn="true" android:textColor="#33b5e5"
-                android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-                android:text="@string/dummy_content" />
+            <!--<TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" android:keepScreenOn="true" android:textColor="#33b5e5"-->
+            <!--android:textStyle="bold" android:textSize="50sp" android:gravity="center"-->
+            <!--android:text="@string/dummy_content" />-->
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:padding="8dp">
+            <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="72dp"-->
+            <!--android:padding="8dp">-->
 
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/ratingBar"
-                    android:stepSize="1"
-                    android:rating="1"
-                    android:numStars="1" />
+            <!--</LinearLayout>-->
+
+            <RelativeLayout style="@style/home_panel">
+
 
                 <TextView
+                    android:id="@+id/labelTotal"
+                    style="@style/home_label"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="当前" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="50"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/labelTotal"
+                    android:numStars="1"
+                    android:rating="1"
+                    android:stepSize="1" />
+
+                <TextView
+                    android:id="@+id/xTotal"
+                    style="@style/home_x"
+                    android:layout_toRightOf="@+id/ratingBar"
+                    android:text="X" />
+
+
+                <TextView
                     android:id="@+id/star_number"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="36sp"
-                    android:layout_margin="6dp" />
-            </LinearLayout>
+                    style="@style/home_star_number_text"
+                    android:layout_toRightOf="@+id/xTotal"
+                    android:text="50" />
+
+
+                <TextView
+                    android:id="@+id/labelToday"
+                    style="@style/home_label"
+                    android:layout_below="@+id/labelTotal"
+                    android:text="今天" />
+                <RatingBar
+                    android:id="@+id/ratingBarToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/labelToday"
+                    android:layout_alignTop="@+id/labelToday"
+                    android:layout_toRightOf="@+id/labelToday"
+                    android:numStars="1"
+                    android:rating="1"
+                    android:stepSize="1" />
+
+                <TextView
+                    android:id="@+id/xToday"
+                    style="@style/home_x"
+                    android:layout_alignBottom="@+id/ratingBarToday"
+                    android:layout_toRightOf="@+id/ratingBarToday"
+                    android:text="X" />
+
+
+                <TextView
+                    android:id="@+id/star_numberToday"
+                    style="@style/home_star_number_text"
+                    android:layout_alignBottom="@+id/xToday"
+                    android:layout_toRightOf="@+id/xToday"
+                    android:text="50" />
+
+                <ImageButton
+                    android:id="@+id/btn_star_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/xToday"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/labelTotal"
+                    android:src="@drawable/abc_ic_go" />
+
+                <Button
+                    android:id="@+id/dummy_button"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelToday"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="openAdd"
+                    android:text="@string/dummy_button" />
+
+            </RelativeLayout>
+
+            <fragment
+                android:id="@+id/fragment"
+                android:name="cn.mycsoft.babygrowstar.frg.PayItemFragment"
+                class="cn.mycsoft.babygrowstar.frg.PayItemFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
+
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
-
-            <Button android:id="@+id/dummy_button" style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="@string/dummy_button"
-                android:clickable="true"
-                android:onClick="openAdd" />
-
-        </LinearLayout>
     </FrameLayout>
 
 </FrameLayout>

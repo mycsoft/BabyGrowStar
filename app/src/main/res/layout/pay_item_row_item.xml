@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="看电视"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/abc_search_url_text_holo"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/star_number"
+        android:text="X"
+        android:textColor="#ffd016"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/star_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="50"
+        android:textColor="@color/abc_search_url_text_normal"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/x"
+        android:src="@android:drawable/star_big_on" />
+</RelativeLayout>
