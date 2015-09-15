@@ -157,6 +157,7 @@
                     android:layout_below="@+id/star_line_2"
                     android:layout_centerHorizontal="true"
                     android:layout_weight="1"
+                    android:background="#858509"
                     android:clickable="true"
                     android:onClick="openAdd"
                     android:text="@string/dummy_button" />
@@ -170,6 +171,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8px"
                 android:layout_weight="1"
                 tools:layout="@layout/fragment_payitem" />
 
