@@ -2,6 +2,7 @@ package cn.mycsoft.babygrowstar.act;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,18 +22,26 @@ import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 public class AddActivity extends AbstractLevel2Activity {
 
+    public static final int R_CHANGED = 1000;
+    public static final int R_UNCHANGED = 500;
     EditText numberEt;
     EditText descEt;
     TextView dateEt;
     TextView timeEt;
-
     DatePickerDialog dateDlg;
     TimePickerDialog timeDlg;
-
+    Mode mode = null;
+    Integer id = null;
     Calendar createTime = Calendar.getInstance();
     //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
     DateFormat dateFormat = SimpleDateFormat.getDateInstance();
     DateFormat timeFormat = SimpleDateFormat.getTimeInstance();
+
+    public static void startForAdd(AbstractActivity context, int requestCode) {
+
+//        context.startActivity(new Intent(context, AddActivity.class));
+        context.startActivityForResult(new Intent(context, AddActivity.class), requestCode);
+    }
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy年MM月dd日");
 
     @Override
@@ -40,12 +49,19 @@ public class AddActivity extends AbstractLevel2Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        id = getIntent().getIntExtra("id", -1);
+        if (id < 0) {
+            id = null;
+            mode = Mode.add;
+        } else {
+            mode = Mode.edit;
+        }
+
         //TODO 编辑时初始化信息.
 
 
-
-        numberEt = (EditText)findViewById(R.id.number);
-        descEt = (EditText)findViewById(R.id.desc);
+        numberEt = (EditText) findViewById(R.id.number);
+        descEt = (EditText) findViewById(R.id.desc);
         dateEt = (TextView) findViewById(R.id.date);
         timeEt = (TextView) findViewById(R.id.time);
 
@@ -151,12 +167,18 @@ public class AddActivity extends AbstractLevel2Activity {
         star.setDesc(descEt.getText().toString());
         try {
             getController().insertStart(star);
+            setResult(R_CHANGED);
             finish();
-        }catch (Exception e){
+
+        } catch (Exception e) {
             Toast.makeText(this, "保存失败!", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
 
 
+    //运行模式.
+    enum Mode {
+        add, edit
+    }
 }

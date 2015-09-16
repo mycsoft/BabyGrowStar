@@ -88,7 +88,7 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
 
     }
 
-    private void initList() {
+    private void initListDate() {
         Cursor c = ((AbstractActivity) getActivity()).getController().findInputList();
         CursorAdapter adapter = new InputCursorAdapter(c);
         mAdapter = adapter;
@@ -97,7 +97,7 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
 //    @Override
 //    public void onResume() {
 //        super.onResume();
-//        initList();
+//        initListDate();
 //    }
 
     @Override
@@ -107,7 +107,7 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        initList();
+        initListDate();
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
@@ -153,6 +153,14 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
         if (emptyView instanceof TextView) {
             ((TextView) emptyView).setText(emptyText);
         }
+    }
+
+    /**
+     * 刷新画面.
+     */
+    public void reloadList() {
+        initListDate();
+        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
     }
 
     /**

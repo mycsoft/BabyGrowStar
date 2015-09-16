@@ -1,5 +1,6 @@
 package cn.mycsoft.babygrowstar.act;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +9,8 @@ import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.frg.InputListFragment;
 
 public class InputListAct extends AbstractLevel2Activity implements InputListFragment.OnFragmentInteractionListener {
+
+    public static final int RQ_CODE_ADD = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +33,26 @@ public class InputListAct extends AbstractLevel2Activity implements InputListFra
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add) {
+            AddActivity.startForAdd(this, RQ_CODE_ADD);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case RQ_CODE_ADD:
+                if (resultCode == AddActivity.R_CHANGED) {
+                    //刷新列表.
+                    InputListFragment fragment = (InputListFragment) getFragmentManager().findFragmentByTag("add");
+                    fragment.reloadList();
+                }
+                break;
+        }
     }
 
     @Override
