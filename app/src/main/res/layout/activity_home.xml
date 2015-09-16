@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@color/background"
     android:fitsSystemWindows="true"
     tools:context=".HomeActivity">
 
@@ -160,7 +160,7 @@
                     android:layout_below="@+id/star_line_2"
                     android:layout_centerHorizontal="true"
                     android:layout_weight="1"
-                    android:background="#858509"
+                    android:background="#039BE5"
                     android:clickable="true"
                     android:onClick="openAdd"
                     android:text="@string/dummy_button" />

@@ -3,8 +3,16 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- translucent system bars -->
-        <!--<item name="android:windowTranslucentStatus">true</item>-->
-        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <!--<item name="android:background">#fff</item>-->
+        <item name="android:windowBackground">@color/background</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:action">true</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.DeviceDefault.NoActionBar">
@@ -24,4 +32,5 @@
     <style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+
 </resources>

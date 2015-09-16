@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+
+        <item name="android:background">@color/background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
@@ -10,6 +14,10 @@
         <item name="android:windowBackground">@null</item>
         <item name="metaButtonBarStyle">@style/ButtonBar</item>
         <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/background</item>
     </style>
 
     <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
@@ -30,7 +38,7 @@
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textSize">36sp</item>
         <item name="android:layout_margin">6dp</item>
-        <item name="android:textColor">#feea1a</item>
+        <item name="android:textColor">#FFEB3B</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -40,7 +48,7 @@
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textSize">24sp</item>
         <item name="android:layout_margin">6dp</item>
-        <item name="android:textColor">#e98004</item>
+        <item name="android:textColor">#FF9800</item>
     </style>
 
     <style name="home_star_number_text">
@@ -50,14 +58,15 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">36sp</item>
         <item name="android:layout_margin">6dp</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">#FFFDE7</item>
     </style>
 
     <style name="home_panel">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:background">#33b5e5</item>
+        <item name="android:background">@color/background</item>
     </style>
+
 
 </resources>
