@@ -38,7 +38,6 @@
             android:layout_height="match_parent"
             android:baselineAligned="true"
             android:orientation="vertical"
-            android:padding="8dp"
             android:showDividers="beginning|end">
 
             <ImageView
@@ -64,13 +63,15 @@
 
             <!--</LinearLayout>-->
 
-            <RelativeLayout style="@style/home_panel">
+            <RelativeLayout
+                style="@style/home_panel"
+                android:padding="8dp">
 
 
                 <LinearLayout
                     android:id="@+id/star_line_1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:orientation="horizontal">
@@ -84,8 +85,8 @@
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center_vertical"
                         android:layout_toLeftOf="@+id/x"
@@ -108,7 +109,7 @@
                 <LinearLayout
                     android:id="@+id/star_line_2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_below="@+id/star_line_1"
                     android:orientation="horizontal">
 
@@ -120,8 +121,8 @@
 
                     <ImageView
                         android:id="@+id/imageView5"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center_vertical"
                         android:layout_toLeftOf="@+id/x"
@@ -150,7 +151,7 @@
                     android:layout_alignBottom="@+id/star_line_2"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/star_line_1"
-                    android:src="@drawable/abc_ic_go" />
+                    android:src="@drawable/ic_chevron_right_white_48dp" />
 
                 <Button
                     android:id="@+id/dummy_button"

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
+    android:background="#FFFDE7"
     android:padding="8dp">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_centerVertical="true"
         android:text="看电视"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/abc_search_url_text_holo"
+        android:textColor="#F57F17"
         android:textStyle="bold" />
 
     <TextView
@@ -20,6 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_toLeftOf="@+id/star_number"
         android:text="X"
         android:textColor="#ffd016"
@@ -34,7 +37,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="50"
-        android:textColor="@color/abc_search_url_text_normal"
+        android:textColor="#F57F17"
         android:textSize="16sp" />
 
     <ImageView
