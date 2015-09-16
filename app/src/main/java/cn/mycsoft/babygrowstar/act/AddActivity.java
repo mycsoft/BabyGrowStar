@@ -1,12 +1,21 @@
 package cn.mycsoft.babygrowstar.act;
 
 import android.app.ActionBar;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
@@ -15,8 +24,17 @@ public class AddActivity extends AbstractActivity {
 
     EditText numberEt;
     EditText descEt;
-    EditText dateEt;
-    EditText timeEt;
+    TextView dateEt;
+    TextView timeEt;
+
+    DatePickerDialog dateDlg;
+    TimePickerDialog timeDlg;
+
+    Calendar createTime = Calendar.getInstance();
+    //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+    DateFormat dateFormat = SimpleDateFormat.getDateInstance();
+    DateFormat timeFormat = SimpleDateFormat.getTimeInstance();
+//    SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy年MM月dd日");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +44,80 @@ public class AddActivity extends AbstractActivity {
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
+        //TODO 编辑时初始化信息.
+
+
+
         numberEt = (EditText)findViewById(R.id.number);
         descEt = (EditText)findViewById(R.id.desc);
-        dateEt = (EditText)findViewById(R.id.date);
-        timeEt = (EditText)findViewById(R.id.time);
+        dateEt = (TextView) findViewById(R.id.date);
+        timeEt = (TextView) findViewById(R.id.time);
+
+        initDateTimeEditor();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initDateTimeEditor();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        paintDate();
+        paintTime();
+    }
+
+    /**
+     * 初始化时间与日期控件.
+     */
+    private void initDateTimeEditor() {
+        //日期选择器.
+        dateDlg = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                createTime.set(year, monthOfYear, dayOfMonth);
+                paintDate();
+            }
+        }, createTime.get(Calendar.YEAR), createTime.get(Calendar.MONTH), createTime.get(Calendar.DAY_OF_MONTH));
+        dateEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateDlg.show();
+            }
+        });
+
+        //时间选择器.
+        timeDlg = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                createTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                createTime.set(Calendar.MINUTE, minute);
+                paintTime();
+            }
+        }, createTime.get(Calendar.HOUR_OF_DAY), createTime.get(Calendar.MINUTE), true);
+        timeEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeDlg.show();
+            }
+        });
+    }
+
+    /**
+     * 绘制日期显示.
+     */
+    private void paintDate() {
+        dateEt.setText(dateFormat.format(createTime.getTime()));
+    }
+
+    /**
+     * 绘制日期显示.
+     */
+    private void paintTime() {
+        timeEt.setText(timeFormat.format(createTime.getTime()));
     }
 
     @Override
@@ -67,6 +155,7 @@ public class AddActivity extends AbstractActivity {
         StarRecord star = new StarRecord();
         star.setNumber(Integer.parseInt(numberEt.getText().toString()));
         star.setType(StarRecord.Type.add);
+        star.setTime(createTime.getTime());
         try {
             getController().insertStart(star);
             finish();
