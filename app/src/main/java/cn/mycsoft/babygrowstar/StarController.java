@@ -2,9 +2,6 @@ package cn.mycsoft.babygrowstar;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.widget.Toast;
-
-import java.util.Date;
 
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 
@@ -36,7 +33,7 @@ public class StarController {
 //        SQLiteDatabase dbh = dbh.getWritableDatabase();
 //        dbh.close();
 //        dbh = null;
-        star.setTime(new Date());
+//        star.setTime(new Date());
         dbh.insertStar(star);
     }
 
@@ -57,5 +54,16 @@ public class StarController {
         c.close();
 //        dbh.close();
         return t;
+    }
+
+    /**
+     * 查询所有添加记录,按时间倒序.
+     *
+     * @return
+     */
+    public Cursor findInputList() {
+        Cursor c = dbh.query(getSql(R.string.sql_input_list));
+
+        return c;
     }
 }

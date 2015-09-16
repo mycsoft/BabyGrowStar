@@ -148,6 +148,7 @@ public class AddActivity extends AbstractLevel2Activity {
         star.setNumber(Integer.parseInt(numberEt.getText().toString()));
         star.setType(StarRecord.Type.add);
         star.setTime(createTime.getTime());
+        star.setDesc(descEt.getText().toString());
         try {
             getController().insertStart(star);
             finish();

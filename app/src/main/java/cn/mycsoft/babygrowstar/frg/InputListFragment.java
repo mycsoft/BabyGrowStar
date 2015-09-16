@@ -2,17 +2,25 @@ package cn.mycsoft.babygrowstar.frg;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
+import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.act.AbstractActivity;
 import cn.mycsoft.babygrowstar.frg.dummy.DummyContent;
 
 /**
@@ -75,9 +83,22 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+
     }
+
+    private void initList() {
+        Cursor c = ((AbstractActivity) getActivity()).getController().findInputList();
+        CursorAdapter adapter = new InputCursorAdapter(c);
+        mAdapter = adapter;
+    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        initList();
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +107,7 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
+        initList();
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
@@ -146,6 +168,39 @@ public class InputListFragment extends Fragment implements AbsListView.OnItemCli
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+    private class InputCursorAdapter extends ResourceCursorAdapter {
+
+        public InputCursorAdapter(Cursor cursor) {
+            super(getActivity(), R.layout.input_item_row_item, cursor, true);
+        }
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+//            if (view == null){
+//                view = View.inflate(context,R.layout.input_item_row_item,null);
+//            }
+
+            setText(view, R.id.label, cursor.getString(4));
+            setText(view, R.id.star_number, String.valueOf(cursor.getInt(1)));
+            Long time = cursor.getLong(2);
+            String df;
+            if (time == null) {
+                df = "未知时间";
+            } else {
+                DateFormat format = SimpleDateFormat.getDateTimeInstance();
+                df = format.format(new Date(time));
+            }
+            setText(view, R.id.time, df);
+
+
+        }
+
+        private void setText(View view, int id, CharSequence txt) {
+            TextView tv = (TextView) view.findViewById(id);
+            tv.setText(txt);
+        }
     }
 
 }

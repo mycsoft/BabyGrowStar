@@ -5,8 +5,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.frg.InputListFragment;
 
-public class InputListAct extends AbstractLevel2Activity {
+public class InputListAct extends AbstractLevel2Activity implements InputListFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +35,10 @@ public class InputListAct extends AbstractLevel2Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+
     }
 }
