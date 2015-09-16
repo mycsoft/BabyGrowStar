@@ -4,8 +4,6 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import cn.mycsoft.babygrowstar.R;
-
 /**
  * 二级页上画面的Activity基类.
  * Created by MaYichao on 2015/9/16.
@@ -31,8 +29,6 @@ public abstract class AbstractLevel2Activity extends AbstractActivity {
         switch (id) {
             case android.R.id.home: //对用户按home icon的处理，本例只需关闭activity，就可返回上一activity，即主activity。
                 return onHomeBtnClick(item);
-            case R.id.action_settings: //对用户按设置的处理，本例只需关闭activity，就可返回上一activity，即主activity。
-                return true;
             default:
                 break;
         }

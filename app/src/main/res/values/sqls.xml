@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<string name="sql_star_create">c</string>-->
+    <string name="sql_star_create">
+    create table star_record (
+    _id Integer PRIMARY KEY AUTOINCREMENT,
+    number Integer not null,
+    time DaLong not null,
+    type Varchar,
+    `desc` varchar
+    )
+    </string>
+    <!--<string name="sql_star_insert">insert into star_record (number,`desc`,type) value(%d,%s,%s)</string>-->
+    <string name="sql_star_insert">insert into star_record (number,`desc`,type,time) values (%1$d,%2$s,%3$s,%4$d)</string>
+    <string name="sql_star_total">select sum(number) from star_record</string>
+
+    <string name="sql_input_list">
+        <![CDATA[
+        select * from star_record  order by time desc
+        ]]>
+    </string>
+
+</resources>

@@ -147,7 +147,8 @@ public class AddActivity extends AbstractLevel2Activity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_settings: //对用户按设置的处理，本例只需关闭activity，就可返回上一activity，即主activity。
+            case R.id.action_save: //对用户按设置的处理，本例只需关闭activity，就可返回上一activity，即主activity。
+                save();
                 return true;
             default:
                 break;
@@ -160,6 +161,10 @@ public class AddActivity extends AbstractLevel2Activity {
      * 保存星星
      */
     public void save(View view) {
+        save();
+    }
+
+    private void save() {
         StarRecord star = new StarRecord();
         star.setNumber(Integer.parseInt(numberEt.getText().toString()));
         star.setType(StarRecord.Type.add);
