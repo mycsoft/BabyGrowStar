@@ -3,6 +3,8 @@ package cn.mycsoft.babygrowstar;
 import android.content.Context;
 import android.database.Cursor;
 
+import java.util.Calendar;
+
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 /**
@@ -65,5 +67,26 @@ public class StarController {
         Cursor c = dbh.query(getSql(R.string.sql_input_list));
 
         return c;
+    }
+
+    /**
+     * 查询今天所有增加的星星总数.
+     *
+     * @return
+     */
+    public int queryStarTodayTotal() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        long begin = calendar.getTimeInMillis();
+        calendar.roll(Calendar.DAY_OF_MONTH, 1);
+        long end = calendar.getTimeInMillis();
+        Cursor c = dbh.query(getSql(R.string.sql_star_total_by_time, begin, end));
+        c.moveToNext();
+        int t = c.getInt(0);
+        c.close();
+//        dbh.close();
+        return t;
     }
 }

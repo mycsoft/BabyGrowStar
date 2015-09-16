@@ -59,6 +59,7 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 //    private SystemUiHider mSystemUiHider;
 
     private TextView numberView;
+    private TextView todayNumberView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         setContentView(R.layout.activity_home);
 
         numberView = (TextView)findViewById(R.id.star_number);
+        todayNumberView = (TextView) findViewById(R.id.star_numberToday);
 //        final View controlsView = findViewById(R.id.fullscreen_content_controls);
 //        final View contentView = findViewById(R.id.fullscreen_content);
 
@@ -166,7 +168,9 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
     protected void onResume() {
         super.onResume();
         int c = getController().queryStarTotal();
+        int today = getController().queryStarTodayTotal();
         numberView.setText(String.valueOf(c));
+        todayNumberView.setText(String.valueOf(today));
     }
 
     public void openAdd(View v){

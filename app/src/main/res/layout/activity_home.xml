@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:fitsSystemWindows="true"
@@ -11,7 +12,9 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
         <LinearLayout
@@ -67,50 +70,13 @@
                 style="@style/home_panel"
                 android:padding="8dp">
 
-
                 <LinearLayout
                     android:id="@+id/star_line_1"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/labelTotal"
-                        style="@style/home_label"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:text="当前" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_toLeftOf="@+id/x"
-                        android:src="@android:drawable/star_big_on" />
-
-                    <TextView
-                        android:id="@+id/xTotal"
-                        style="@style/home_x"
-                        android:layout_toRightOf="@+id/ratingBar"
-                        android:text="X" />
-
-                    <TextView
-                        android:id="@+id/star_number"
-                        style="@style/home_star_number_text"
-                        android:layout_toRightOf="@+id/xTotal"
-                        android:text="50" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/star_line_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_below="@+id/star_line_1"
                     android:orientation="horizontal">
 
                     <TextView
@@ -142,6 +108,43 @@
                         android:layout_toRightOf="@+id/xToday"
                         android:text="50" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/star_line_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/star_line_1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/labelTotal"
+                        style="@style/home_label"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="当前" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toLeftOf="@+id/x"
+                        android:src="@android:drawable/star_big_on" />
+
+                    <TextView
+                        android:id="@+id/xTotal"
+                        style="@style/home_x"
+                        android:layout_toRightOf="@+id/ratingBar"
+                        android:text="X" />
+
+                    <TextView
+                        android:id="@+id/star_number"
+                        style="@style/home_star_number_text"
+                        android:layout_toRightOf="@+id/xTotal"
+                        android:text="50" />
+                </LinearLayout>
+
 
                 <ImageButton
                     android:id="@+id/btn_star_list"
