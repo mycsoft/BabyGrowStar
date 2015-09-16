@@ -65,6 +65,7 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+
         numberView = (TextView)findViewById(R.id.star_number);
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
 //        final View contentView = findViewById(R.id.fullscreen_content);
