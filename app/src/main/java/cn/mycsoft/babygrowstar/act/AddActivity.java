@@ -1,6 +1,5 @@
 package cn.mycsoft.babygrowstar.act;
 
-import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import java.util.Calendar;
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 
-public class AddActivity extends AbstractActivity {
+public class AddActivity extends AbstractLevel2Activity {
 
     EditText numberEt;
     EditText descEt;
@@ -40,10 +39,6 @@ public class AddActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        ActionBar actionBar = getActionBar();
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
 
         //TODO 编辑时初始化信息.
 
@@ -136,9 +131,6 @@ public class AddActivity extends AbstractActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case android.R.id.home: //对用户按home icon的处理，本例只需关闭activity，就可返回上一activity，即主activity。
-                finish();
-                return true;
             case R.id.action_settings: //对用户按设置的处理，本例只需关闭activity，就可返回上一activity，即主activity。
                 return true;
             default:

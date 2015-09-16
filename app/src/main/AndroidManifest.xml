@@ -3,10 +3,10 @@
     package="cn.mycsoft.babygrowstar" >
 
     <application
+        android:name=".StarApp"
         android:allowBackup="true"
         android:icon="@drawable/star"
         android:label="@string/app_name"
-        android:name=".StarApp"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".act.HomeActivity"
@@ -21,7 +21,10 @@
         </activity>
         <activity
             android:name=".act.AddActivity"
-            android:label="@string/title_activity_add" >
+            android:label="@string/title_activity_add" ></activity>
+        <activity
+            android:name=".act.InputListAct"
+            android:label="@string/title_activity_input_list">
         </activity>
     </application>
 

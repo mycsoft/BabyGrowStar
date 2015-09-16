@@ -67,7 +67,7 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         setContentView(R.layout.activity_home);
 
         numberView = (TextView)findViewById(R.id.star_number);
-        final View controlsView = findViewById(R.id.fullscreen_content_controls);
+//        final View controlsView = findViewById(R.id.fullscreen_content_controls);
 //        final View contentView = findViewById(R.id.fullscreen_content);
 
         // Set up an instance of SystemUiHider to control the system UI for
@@ -138,6 +138,10 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
+    }
+
+    public void openInputList(View view) {
+        startActivity(new Intent(this, InputListAct.class));
     }
 
 //    Handler mHideHandler = new Handler();
