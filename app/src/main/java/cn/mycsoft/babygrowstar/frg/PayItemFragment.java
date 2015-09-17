@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ import cn.mycsoft.babygrowstar.entity.StarRecord;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class PayItemFragment extends AbstractFragment implements AbsListView.OnItemClickListener {
+public class PayItemFragment extends AbstractFragment implements AbsListView.OnItemClickListener, AbsListView.OnItemLongClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,6 +53,13 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
      * Views.
      */
     private ListAdapter mAdapter;
+
+    /**
+     * 编辑工作栏
+     */
+    private ViewGroup editbar;
+
+    private ImageButton removeBtn;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -162,9 +170,10 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
 //        mListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
 
-
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
+//        mListView.setOnItemLongClickListener(this);
+
 
         return view;
     }
@@ -194,10 +203,18 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onStarSelected(mAdapter.getItemId(position));
+
+        editbar = (ViewGroup) view.findViewById(R.id.edit_pane);
+        removeBtn = (ImageButton) view.findViewById(R.id.remove_btn);
+        if (editbar.getVisibility() == View.VISIBLE) {
+            //隐藏工具栏.
+            editbar.setVisibility(View.GONE);
+        } else {
+            if (null != mListener) {
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onStarSelected(mAdapter.getItemId(position));
+            }
         }
     }
 
@@ -217,6 +234,17 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
     public void reload() {
         initDate();
     }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        //长按删除.
+        //显示删除按钮.
+        editbar = (ViewGroup) view.findViewById(R.id.edit_pane);
+        removeBtn = (ImageButton) view.findViewById(R.id.remove_btn);
+        editbar.setVisibility(View.VISIBLE);
+        return true;
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

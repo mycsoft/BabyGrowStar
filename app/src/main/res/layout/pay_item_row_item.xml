@@ -1,65 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:padding="8dp">
+    android:layout_height="56dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="看电视"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#F57F17"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="1分钟之前"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#F57F17"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/label"
+            android:id="@+id/x"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="看电视"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#F57F17"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/star_number"
+            android:text="X"
+            android:textColor="#ffd016"
+            android:textSize="12dp"
             android:textStyle="bold" />
 
+
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/star_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="1分钟之前"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="50"
             android:textColor="#F57F17"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/x"
+            android:src="@android:drawable/star_big_on" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/edit_pane"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:baselineAligned="false"
+        android:gravity="center_vertical|right"
+        android:longClickable="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/remove_btn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="right"
+            android:background="#F44336"
+            android:src="@drawable/ic_remove_white_36dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/x"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_toLeftOf="@+id/star_number"
-        android:text="X"
-        android:textColor="#ffd016"
-        android:textSize="12dp"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:id="@+id/star_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="50"
-        android:textColor="#F57F17"
-        android:textSize="16sp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/x"
-        android:src="@android:drawable/star_big_on" />
-</RelativeLayout>
+</FrameLayout>
