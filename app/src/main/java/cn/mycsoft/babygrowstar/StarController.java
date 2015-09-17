@@ -3,6 +3,8 @@ package cn.mycsoft.babygrowstar;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.Calendar;
 
 import cn.mycsoft.babygrowstar.entity.StarRecord;
@@ -37,6 +39,7 @@ public class StarController {
 //        dbh = null;
 //        star.setTime(new Date());
         dbh.insertStar(star);
+        StatService.onEvent(context, "add star", "save", star.getNumber());
     }
 
     protected String getSql(int id, Object... ags) {
