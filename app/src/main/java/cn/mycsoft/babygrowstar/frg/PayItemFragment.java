@@ -1,19 +1,18 @@
 package cn.mycsoft.babygrowstar.frg;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import cn.mycsoft.babygrowstar.R;
-import cn.mycsoft.babygrowstar.frg.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -24,7 +23,7 @@ import cn.mycsoft.babygrowstar.frg.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class PayItemFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class PayItemFragment extends AbstractFragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,9 +73,13 @@ public class PayItemFragment extends Fragment implements AbsListView.OnItemClick
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                R.layout.pay_item_row_item, R.id.label, DummyContent.ITEMS);
+//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+//                R.layout.pay_item_row_item, R.id.label, DummyContent.ITEMS);
+        Cursor c = getController().findInputList();
+        mAdapter = new SimpleCursorAdapter(getActivity(), R.layout.pay_item_row_item, c,
+                new String[]{"desc", "number"},
+                new int[]{R.id.label, R.id.star_number},
+                1);
     }
 
     @Override
@@ -118,7 +121,7 @@ public class PayItemFragment extends Fragment implements AbsListView.OnItemClick
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 

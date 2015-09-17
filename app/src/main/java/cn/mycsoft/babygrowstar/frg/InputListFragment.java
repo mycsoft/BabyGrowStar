@@ -1,7 +1,6 @@
 package cn.mycsoft.babygrowstar.frg;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -33,7 +32,7 @@ import cn.mycsoft.babygrowstar.act.AbstractActivity;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class InputListFragment extends Fragment implements AbsListView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class InputListFragment extends AbstractFragment implements AbsListView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
