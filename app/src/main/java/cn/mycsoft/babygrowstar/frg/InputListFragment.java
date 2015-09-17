@@ -152,7 +152,7 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
 //        if (null != mListener) {
 //            // Notify the active callbacks interface (the activity, if the
 //            // fragment is attached to one) that an item has been selected.
-//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+//            mListener.onStarSelected(DummyContent.ITEMS.get(position).id);
 //        }
     }
 

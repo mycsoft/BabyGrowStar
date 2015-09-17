@@ -1,6 +1,5 @@
 package cn.mycsoft.babygrowstar;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -71,6 +70,22 @@ public class DbHelper extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
             return count;
         }finally {
+            db.endTransaction();
+
+        }
+    }
+
+    public long updateStar(StarRecord star) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.update("star_record", star.toContentValues(), "_id = ?",
+                    new String[]{String.valueOf(star.getId())});
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
             db.endTransaction();
 
         }

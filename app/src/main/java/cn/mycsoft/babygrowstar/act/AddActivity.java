@@ -31,7 +31,7 @@ public class AddActivity extends AbstractLevel2Activity {
     DatePickerDialog dateDlg;
     TimePickerDialog timeDlg;
     Mode mode = null;
-    Integer id = null;
+    Long id = null;
     Calendar createTime = Calendar.getInstance();
     //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
     DateFormat dateFormat = SimpleDateFormat.getDateInstance();
@@ -44,12 +44,18 @@ public class AddActivity extends AbstractLevel2Activity {
     }
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy年MM月dd日");
 
+    public static void startForEdit(AbstractActivity activity, Long id, int requestCode) {
+        Intent intent = new Intent(activity, AddActivity.class);
+        intent.putExtra("id", id);
+        activity.startActivityForResult(intent, requestCode);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        id = getIntent().getIntExtra("id", -1);
+        id = getIntent().getLongExtra("id", -1);
         if (id < 0) {
             id = null;
             mode = Mode.add;
@@ -57,15 +63,26 @@ public class AddActivity extends AbstractLevel2Activity {
             mode = Mode.edit;
         }
 
-        //TODO 编辑时初始化信息.
-
 
         numberEt = (EditText) findViewById(R.id.number);
         descEt = (EditText) findViewById(R.id.desc);
         dateEt = (TextView) findViewById(R.id.date);
         timeEt = (TextView) findViewById(R.id.time);
 
+
+        //TODO 编辑时初始化信息.
+        if (mode == Mode.edit) {
+            initDateForEdit(id);
+        }
+
         initDateTimeEditor();
+    }
+
+    private void initDateForEdit(Long id) {
+        StarRecord star = getController().getStarById(id);
+        numberEt.setText(String.valueOf(star.getNumber()));
+        descEt.setText(star.getDesc());
+        createTime.setTime(star.getTime());
     }
 
     @Override
@@ -171,7 +188,15 @@ public class AddActivity extends AbstractLevel2Activity {
         star.setTime(createTime.getTime());
         star.setDesc(descEt.getText().toString());
         try {
-            getController().insertStart(star);
+            switch (mode) {
+                case add:
+                    getController().insertStar(star);
+                    break;
+                case edit:
+                    star.setId(id.intValue());
+                    getController().updateStar(star);
+                    break;
+            }
             setResult(R_CHANGED);
             finish();
 

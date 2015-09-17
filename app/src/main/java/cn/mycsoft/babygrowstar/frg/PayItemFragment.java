@@ -197,7 +197,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onStarSelected(mAdapter.getItemId(position));
         }
     }
 
@@ -226,7 +226,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+        public void onStarSelected(Long id);
     }
 
 }

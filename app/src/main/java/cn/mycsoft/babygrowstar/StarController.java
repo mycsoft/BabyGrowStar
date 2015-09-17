@@ -30,7 +30,7 @@ public class StarController {
      *
      * @param star
      */
-    public void insertStart(StarRecord star) {
+    public void insertStar(StarRecord star) {
         //TODO 保存星星
 //        dbh = new DbHelper(context);
 //        dbh.update(getSql(R.string.sql_star_insert, '\'' + star.getNumber() + '\'', '\''+star.getDesc() + '\'', '\'' + star.getType().toString() + '\'', System.currentTimeMillis()));
@@ -40,6 +40,11 @@ public class StarController {
 //        star.setTime(new Date());
         dbh.insertStar(star);
         StatService.onEvent(context, "add star", "save", star.getNumber());
+    }
+
+    public void updateStar(StarRecord star) {
+        dbh.updateStar(star);
+        StatService.onEvent(context, "update star", "save", star.getNumber());
     }
 
     protected String getSql(int id, Object... ags) {
@@ -92,4 +97,23 @@ public class StarController {
 //        dbh.close();
         return t;
     }
+
+    /**
+     * 根据id取得对象.
+     *
+     * @param id
+     * @return
+     */
+    public StarRecord getStarById(Long id) {
+        Cursor c = dbh.query(getSql(R.string.sql_select_star_by_id, id));
+        if (c.getCount() < 1) {
+            return null;
+        }
+
+        c.moveToNext();
+        StarRecord star = StarRecord.parse(c);
+        return star;
+    }
+
+
 }

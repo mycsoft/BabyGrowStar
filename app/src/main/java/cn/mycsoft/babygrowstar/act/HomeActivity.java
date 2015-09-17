@@ -179,9 +179,10 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
-
+    public void onStarSelected(Long id) {
+        AddActivity.startForEdit(this, id, 2000);
     }
+
 
     //============= 任务清单 ======================
     //实现保存添加星星

@@ -26,5 +26,6 @@
         select sum(number) from star_record where time >= %1$d and time < %2$d
         ]]>
         </string>
+    <string name="sql_select_star_by_id">select * from star_record where _id = %d</string>
 
 </resources>
