@@ -117,7 +117,7 @@ public class StarRecord {
     /**
      * 记录类型
      */
-    public static enum Type {
+    public enum Type {
         /**
          * 添加记录
          */
@@ -128,13 +128,13 @@ public class StarRecord {
         use
     }
 
-    public static class Sql {
-        public static final String  CREATE = "create table star_record { " +
-                "_id Integer PRIMARY KEY AUTOINCREMENT," +
-                "number Integer not null," +
-                "time Long not null default now()," +
-                "type Varchar," +
-                "`desc` varchar" +
-                "}";
-    }
+//    public static class Sql {
+//        public static final String  CREATE = "create table star_record { " +
+//                "_id Integer PRIMARY KEY AUTOINCREMENT," +
+//                "number Integer not null," +
+//                "time Long not null default now()," +
+//                "type Varchar," +
+//                "`desc` varchar" +
+//                "}";
+//    }
 }
