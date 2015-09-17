@@ -23,4 +23,6 @@ public abstract class AbstractFragment extends Fragment {
     public StarController getController() {
         return getStarAct().getController();
     }
+
+
 }

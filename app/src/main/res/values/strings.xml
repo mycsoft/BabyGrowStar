@@ -10,6 +10,7 @@
     <string name="action_settings">设置</string>
     <string name="action_add">添加</string>
     <string name="action_save">保存</string>
+    <string name="title_activity_edit">修改记录</string>
 
 
 </resources>

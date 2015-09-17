@@ -70,9 +70,11 @@ public class AddActivity extends AbstractLevel2Activity {
         timeEt = (TextView) findViewById(R.id.time);
 
 
-        //TODO 编辑时初始化信息.
+        //编辑时初始化信息.
         if (mode == Mode.edit) {
             initDateForEdit(id);
+            //修改显示的标题栏.
+            getActionBar().setTitle(R.string.title_activity_edit);
         }
 
         initDateTimeEditor();

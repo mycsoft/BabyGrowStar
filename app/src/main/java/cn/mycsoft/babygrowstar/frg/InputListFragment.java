@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
-import android.widget.ListAdapter;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
@@ -21,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.mycsoft.babygrowstar.R;
-import cn.mycsoft.babygrowstar.act.AbstractActivity;
 
 /**
  * A fragment representing a list of Items.
@@ -39,23 +36,25 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     SwipeRefreshLayout swipeRefreshLayout;
-    TextView refreshTxt;
+    //    TextView refreshTxt;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private boolean loading = false;
     private OnFragmentInteractionListener mListener;
 
+    private PayItemFragment listFragment;
+
     /**
      * The fragment's ListView/GridView.
      */
-    private AbsListView mListView;
+//    private AbsListView mListView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ListAdapter mAdapter;
+//    private ListAdapter mAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -89,15 +88,15 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
 
     }
 
-    private void initListDate() {
-        AbstractActivity act = ((AbstractActivity) getActivity());
-        if (act == null) {
-            return;
-        }
-        Cursor c = act.getController().findInputList();
-        CursorAdapter adapter = new InputCursorAdapter(c);
-        mAdapter = adapter;
-    }
+//    private void initListDate() {
+////        AbstractActivity act = ((AbstractActivity) getActivity());
+////        if (act == null) {
+////            return;
+////        }
+////        Cursor c = act.getController().findInputList();
+////        CursorAdapter adapter = new InputCursorAdapter(c);
+////        mAdapter = adapter;
+//    }
 
 //    @Override
 //    public void onResume() {
@@ -111,12 +110,12 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
         View view = inflater.inflate(R.layout.fragment_inputlist, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
-        initListDate();
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+//        mListView = (AbsListView) view.findViewById(android.R.id.list);
+//        initListDate();
+//        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
-        mListView.setOnItemClickListener(this);
+//        mListView.setOnItemClickListener(this);
 
         //下拉刷新组件
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
@@ -125,7 +124,9 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_red_light
         );
-        refreshTxt = (TextView) view.findViewById(R.id.refresh_txt);
+//        refreshTxt = (TextView) view.findViewById(R.id.refresh_txt);
+
+        listFragment = (PayItemFragment) getFragmentManager().findFragmentByTag("list");
 
         return view;
     }
@@ -156,25 +157,26 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
 //        }
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
-    public void setEmptyText(CharSequence emptyText) {
-        View emptyView = mListView.getEmptyView();
-
-        if (emptyView instanceof TextView) {
-            ((TextView) emptyView).setText(emptyText);
-        }
-    }
+//    /**
+//     * The default content for this Fragment has a TextView that is shown when
+//     * the list is empty. If you would like to change the text, call this method
+//     * to supply the text it should use.
+//     */
+//    public void setEmptyText(CharSequence emptyText) {
+//        View emptyView = mListView.getEmptyView();
+//
+//        if (emptyView instanceof TextView) {
+//            ((TextView) emptyView).setText(emptyText);
+//        }
+//    }
 
     /**
      * 刷新画面.
      */
     public void reloadList() {
-        initListDate();
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+//        initListDate();
+//        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        listFragment.reload();
     }
 
     @Override
