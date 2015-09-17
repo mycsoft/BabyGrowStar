@@ -20,7 +20,7 @@ public abstract class AbstractActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 调试百度统计SDK的Log开关，可以在Eclipse中看到sdk打印的日志，发布时去除调用，或者设置为false
-        StatService.setDebugOn(true);
+//        StatService.setDebugOn(true);
 
         starApp = (StarApp)getApplication();
         starApp.addActivity(this);
