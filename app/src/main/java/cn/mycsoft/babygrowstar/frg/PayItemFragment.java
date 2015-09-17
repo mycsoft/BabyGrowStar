@@ -1,6 +1,7 @@
 package cn.mycsoft.babygrowstar.frg;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +10,15 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
-import android.widget.SimpleCursorAdapter;
+import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 /**
  * A fragment representing a list of Items.
@@ -75,11 +81,75 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
 
 //        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
 //                R.layout.pay_item_row_item, R.id.label, DummyContent.ITEMS);
+
+//        mAdapter = new SimpleCursorAdapter(getActivity(), R.layout.pay_item_row_item, c,
+//                new String[]{"desc", "number"},
+//                new int[]{R.id.label, R.id.star_number},
+//                1);
+    }
+
+    private void initDate() {
         Cursor c = getController().findInputList();
-        mAdapter = new SimpleCursorAdapter(getActivity(), R.layout.pay_item_row_item, c,
-                new String[]{"desc", "number"},
-                new int[]{R.id.label, R.id.star_number},
-                1);
+        mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.pay_item_row_item, c, 1) {
+            @Override
+            public void bindView(View view, Context context, Cursor cursor) {
+                TextView titleTx, numberTx, timeTx;
+                titleTx = (TextView) view.findViewById(R.id.label);
+                numberTx = (TextView) view.findViewById(R.id.star_number);
+                timeTx = (TextView) view.findViewById(R.id.time);
+                StarRecord star = StarRecord.parse(cursor);
+                titleTx.setText(star.getDesc());
+                numberTx.setText(String.valueOf(star.getNumber()));
+
+                Calendar now = Calendar.getInstance();
+                Calendar time = Calendar.getInstance();
+                time.setTime(star.getTime());
+                String timeString = null;
+                DateFormat format = null;
+                if (now.get(Calendar.YEAR) == time.get(Calendar.YEAR)) {
+                    //同一年.
+
+                    //与今天的差距(天).
+                    int dT = now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR);
+                    switch (dT) {
+                        case 0: //今天显示时间
+                            format = new SimpleDateFormat("HH:mm");
+                            timeString = format.format(time.getTime());
+
+                            break;
+                        case 1: //昨天
+                            timeString = "昨天";
+                            break;
+                        case 2: //前天
+                            timeString = "前天";
+                            break;
+                        default:    //同年,只显示月日.
+                            format = new SimpleDateFormat("MM月dd日");
+                            timeString = format.format(time.getTime());
+                            break;
+                    }
+
+                } else {
+                    //不在同一年,只显示到日期.
+                    format = new SimpleDateFormat("yyyy年MM月dd日");
+                    timeString = format.format(time.getTime());
+                }
+
+                timeTx.setText(timeString);
+
+            }
+
+//            private void setText(View view,String column,int id){
+//                TextView titleTx;
+//                titleTx = (TextView)view.findViewById(R.id.label);
+//                String c
+//            }
+
+
+        };
+
+        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+
     }
 
     @Override
@@ -91,12 +161,18 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
         mListView = (AbsListView) view.findViewById(android.R.id.list);
 //        mListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initDate();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cn.mycsoft.babygrowstar.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import java.util.Date;
 
@@ -26,6 +27,22 @@ public class StarRecord {
      * 说明
      */
     private String desc;
+
+    /**
+     * 从数据库表行,转换为数据对象.
+     *
+     * @param cursor
+     * @return
+     */
+    public static StarRecord parse(Cursor cursor) {
+        StarRecord star = new StarRecord();
+        star.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+        star.setDesc(cursor.getString(cursor.getColumnIndex("desc")));
+        star.setTime(new Date(cursor.getLong(cursor.getColumnIndex("time"))));
+        star.setType(Type.valueOf(cursor.getString(cursor.getColumnIndex("type"))));
+        star.setNumber(cursor.getInt(cursor.getColumnIndex("number")));
+        return star;
+    }
 
     /**
      * 调用时间
@@ -82,7 +99,7 @@ public class StarRecord {
             cv.put("_id",id);
         }
 
-        cv.put("number",number);
+        cv.put("number", number);
         if (time != null){
             cv.put("time",time.getTime());
         }
@@ -94,6 +111,8 @@ public class StarRecord {
         }
         return cv;
     }
+
+
 
     /**
      * 记录类型
