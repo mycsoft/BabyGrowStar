@@ -60,8 +60,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/star_blue_button"
                     android:clickable="true"
+                    android:drawableLeft="@drawable/ic_event_white_24dp"
                     android:editable="false"
                     android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="8dp"
                     android:text="2015年4月23日"
                     android:textColor="#fff"
                     android:textSize="16sp" />
@@ -74,8 +76,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/star_blue_button"
                     android:clickable="true"
+                    android:drawableLeft="@drawable/ic_access_time_white_24dp"
                     android:editable="true"
                     android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="8dp"
                     android:text="下午 1:23:34"
                     android:textColor="#fff"
                     android:textSize="16sp" />
