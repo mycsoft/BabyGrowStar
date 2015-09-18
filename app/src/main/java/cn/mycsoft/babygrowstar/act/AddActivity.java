@@ -1,5 +1,6 @@
 package cn.mycsoft.babygrowstar.act;
 
+import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -54,7 +55,7 @@ public class AddActivity extends AbstractLevel2Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-
+        ActionBar actionBar = getActionBar();
         id = getIntent().getLongExtra("id", -1);
         if (id < 0) {
             id = null;
@@ -69,12 +70,18 @@ public class AddActivity extends AbstractLevel2Activity {
         dateEt = (TextView) findViewById(R.id.date);
         timeEt = (TextView) findViewById(R.id.time);
 
+        actionBar.setDisplayShowHomeEnabled(true);
 
         //编辑时初始化信息.
         if (mode == Mode.edit) {
             initDateForEdit(id);
             //修改显示的标题栏.
             getActionBar().setTitle(R.string.title_activity_edit);
+            actionBar.setIcon(R.drawable.ic_create_white_24dp);
+        } else {
+            //add
+            actionBar.setIcon(R.drawable.ic_add_box_white_24dp);
+
         }
 
         initDateTimeEditor();

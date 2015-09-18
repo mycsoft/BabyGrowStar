@@ -16,6 +16,7 @@ public abstract class AbstractLevel2Activity extends AbstractActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setDisplayShowHomeEnabled(false);
     }
 
     @Override

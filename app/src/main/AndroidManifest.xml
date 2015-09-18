@@ -31,10 +31,12 @@
         </activity>
         <activity
             android:name=".act.AddActivity"
-            android:label="@string/title_activity_add"></activity>
+            android:label="@string/title_activity_add"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".act.InputListAct"
-            android:label="@string/title_activity_input_list"></activity>
+            android:label="@string/title_activity_input_list"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
