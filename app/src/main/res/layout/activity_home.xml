@@ -68,6 +68,10 @@
 
             <RelativeLayout
                 style="@style/home_panel"
+                android:background="@drawable/home_star_summary_panel_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="openInputList"
                 android:padding="8dp">
 
                 <LinearLayout
@@ -146,15 +150,13 @@
                 </LinearLayout>
 
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/btn_star_list"
-                    style="?metaButtonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/star_line_2"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/star_line_1"
-                    android:onClick="openInputList"
                     android:src="@drawable/ic_chevron_right_white_48dp" />
 
                 <!--android:background="#039BE5"-->
