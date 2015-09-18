@@ -20,8 +20,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="看电视"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#F57F17"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
