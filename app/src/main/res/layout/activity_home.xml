@@ -157,19 +157,26 @@
                     android:onClick="openInputList"
                     android:src="@drawable/ic_chevron_right_white_48dp" />
 
-                <Button
-                    android:id="@+id/dummy_button"
-                    style="@style/star_blue_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/star_line_2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_weight="1"
-                    android:onClick="openAdd"
-                    android:text="@string/dummy_button" />
-
                 <!--android:background="#039BE5"-->
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/dummy_button"
+                style="@style/star_blue_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+
+                android:layout_centerHorizontal="true"
+
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:drawableLeft="@drawable/ic_add_white_36dp"
+                android:gravity="center"
+                android:onClick="openAdd"
+                android:paddingLeft="8dp"
+
+                android:paddingRight="44dp"
+                android:text="@string/dummy_button" />
 
             <fragment
                 android:id="@+id/fragment"
