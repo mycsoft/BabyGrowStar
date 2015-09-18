@@ -159,17 +159,16 @@
 
                 <Button
                     android:id="@+id/dummy_button"
-                    style="?metaButtonBarButtonStyle"
+                    style="@style/star_blue_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/star_line_2"
                     android:layout_centerHorizontal="true"
                     android:layout_weight="1"
-                    android:background="#039BE5"
-                    android:clickable="true"
                     android:onClick="openAdd"
                     android:text="@string/dummy_button" />
 
+                <!--android:background="#039BE5"-->
             </RelativeLayout>
 
             <fragment

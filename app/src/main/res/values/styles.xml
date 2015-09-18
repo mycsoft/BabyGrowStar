@@ -18,6 +18,11 @@
     <style name="ActionBarStyle" parent="android:Widget.Holo.ActionBar">
         <item name="android:background">@color/background</item>
         <item name="android:textColor">#FFF</item>
+        <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+    </style>
+
+    <style name="ActionBarTitle" parent="android:style/TextAppearance.Holo.Large">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
@@ -74,6 +79,13 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="star_blue_button">
+        <item name="android:background">@drawable/star_blue_button</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:focusable">true</item>
     </style>
 
 
