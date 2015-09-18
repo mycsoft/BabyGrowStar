@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">宝贝成长星[预览版]</string>
+    <string name="app_name">宝贝成长星</string>
 
     <string name="dummy_button">添加星星</string>
     <string name="dummy_content">宝贝\n成长星星</string>
