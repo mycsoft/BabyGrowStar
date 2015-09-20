@@ -1,10 +1,18 @@
 package cn.mycsoft.babygrowstar.act;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+import com.umeng.update.UpdateStatus;
 
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.frg.PayItemFragment;
@@ -61,14 +69,18 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
     private TextView numberView;
     private TextView todayNumberView;
 
+    private ImageView ball;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.activity_home);
 
-        numberView = (TextView)findViewById(R.id.star_number);
+        numberView = (TextView) findViewById(R.id.star_number);
         todayNumberView = (TextView) findViewById(R.id.star_numberToday);
+        ball = (ImageView) findViewById(R.id.image_ball);
 //        final View controlsView = findViewById(R.id.fullscreen_content_controls);
 //        final View contentView = findViewById(R.id.fullscreen_content);
 
@@ -130,7 +142,34 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+
+        UmengUpdateAgent.setUpdateAutoPopup(false);
+        UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+            @Override
+            public void onUpdateReturned(int updateStatus, UpdateResponse updateInfo) {
+                Context mContext = HomeActivity.this;
+                switch (updateStatus) {
+                    case UpdateStatus.Yes: // has update
+                        ball.setVisibility(View.VISIBLE);
+                        UmengUpdateAgent.showUpdateDialog(mContext, updateInfo);
+                        break;
+                    case UpdateStatus.No: // has no update
+                        Toast.makeText(mContext, "没有更新", Toast.LENGTH_SHORT).show();
+                        break;
+                    case UpdateStatus.NoneWifi: // none wifi
+                        Toast.makeText(mContext, "没有wifi连接， 只在wifi下更新", Toast.LENGTH_SHORT).show();
+                        break;
+                    case UpdateStatus.Timeout: // time out
+                        Toast.makeText(mContext, "超时", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
+        UmengUpdateAgent.update(this);
+
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -140,6 +179,12 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     public void openInputList(View view) {
@@ -173,9 +218,18 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         todayNumberView.setText(String.valueOf(today));
     }
 
-    public void openAdd(View v){
+    public void openAdd(View v) {
 //        startActivity(new Intent(this,AddActivity.class));
         AddActivity.startForAdd(this, 1000);
+    }
+
+    public void update(View v) {
+        UmengUpdateAgent.forceUpdate(this);
+//        update();
+    }
+
+    private void update() {
+
     }
 
     @Override

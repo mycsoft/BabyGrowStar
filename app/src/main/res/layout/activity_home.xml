@@ -38,20 +38,42 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:baselineAligned="true"
             android:orientation="vertical"
             android:showDividers="beginning|end">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:layout_marginTop="16dp"
-                android:foregroundGravity="fill_horizontal"
-                android:src="@drawable/star" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/imageStar"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="16dp"
+                    android:foregroundGravity="fill_horizontal"
+                    android:onClick="update"
+                    android:src="@drawable/star" />
+
+                <ImageView
+                    android:id="@+id/image_ball"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_alignRight="@+id/imageStar"
+                    android:layout_alignTop="@+id/imageStar"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/star_home_ball"
+                    android:visibility="gone" />
+            </RelativeLayout>
 
             <!--<TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" android:keepScreenOn="true" android:textColor="#33b5e5"-->

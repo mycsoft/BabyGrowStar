@@ -3,10 +3,10 @@ package cn.mycsoft.babygrowstar.act;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.baidu.mobstat.StatService;
-
 import cn.mycsoft.babygrowstar.StarApp;
 import cn.mycsoft.babygrowstar.StarController;
+
+//import com.baidu.mobstat.StatService;
 
 /**
  * Created by MaYichao on 2015/8/30.
@@ -30,13 +30,13 @@ public abstract class AbstractActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        StatService.onResume(this);
+//        StatService.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        StatService.onPause(this);
+//        StatService.onPause(this);
     }
 
     @Override

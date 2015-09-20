@@ -2,21 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.mycsoft.babygrowstar">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:name=".StarApp"
         android:allowBackup="true"
         android:icon="@drawable/star"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <meta-data
-            android:name="BDAPPID"
-            android:value="6875290" />
+            android:name="UMENG_APPKEY"
+            android:value="55fe486ee0f55a9a0500124b" />
         <meta-data
-            android:name="BDAPPKEY"
-            android:value="oxmBWsDy8fHePmfHNxzyS0NC" />
-        <meta-data
-            android:name="BAIDUMOBAD_EXCEPTION_LOG"
-            android:value="true" />
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
 
         <activity
             android:name=".act.HomeActivity"
@@ -37,6 +39,13 @@
             android:name=".act.InputListAct"
             android:label="@string/title_activity_input_list"
             android:screenOrientation="portrait"></activity>
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService"></service>
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
     </application>
 
 </manifest>
