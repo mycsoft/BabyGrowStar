@@ -104,14 +104,26 @@
 
             <Button
                 android:id="@+id/btn_save"
-                style="@style/star_blue_button"
+                style="@style/star_default_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/linearLayout"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
                 android:onClick="save"
                 android:text="保存" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                style="@style/star_danger_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/linearLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:onClick="delete"
+                android:text="删除" />
 
         </LinearLayout>
     </ScrollView>

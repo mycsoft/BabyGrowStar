@@ -1,13 +1,16 @@
 package cn.mycsoft.babygrowstar.act;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +40,11 @@ public class AddActivity extends AbstractLevel2Activity {
     //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
     DateFormat dateFormat = SimpleDateFormat.getDateInstance();
     DateFormat timeFormat = SimpleDateFormat.getTimeInstance();
+
+    /**
+     * 删除按钮
+     */
+    Button deleteBtn;
 
     public static void startForAdd(AbstractActivity context, int requestCode) {
 
@@ -69,6 +77,7 @@ public class AddActivity extends AbstractLevel2Activity {
         descEt = (EditText) findViewById(R.id.desc);
         dateEt = (TextView) findViewById(R.id.date);
         timeEt = (TextView) findViewById(R.id.time);
+        deleteBtn = (Button) findViewById(R.id.btn_delete);
 
         actionBar.setDisplayShowHomeEnabled(true);
 
@@ -81,6 +90,8 @@ public class AddActivity extends AbstractLevel2Activity {
         } else {
             //add
             actionBar.setIcon(R.drawable.ic_add_box_white_24dp);
+            //新增时不显示删除按钮.
+            deleteBtn.setVisibility(View.GONE);
 
         }
 
@@ -213,6 +224,32 @@ public class AddActivity extends AbstractLevel2Activity {
             Toast.makeText(this, "保存失败!", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 删除星星
+     */
+    public void delete(View view) {
+        delete();
+    }
+
+    private void delete() {
+        if (mode != Mode.edit) {
+            //只有编辑模式下才有用.
+            return;
+        }
+        new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+                .setPositiveButton("狠心删除", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getController().deleteStar(id);
+                        setResult(R_CHANGED);
+                        finish();
+                    }
+                }).setNegativeButton("还是不删了吧", null).setTitle("删除星星")
+                .setMessage("宝贝犯了什么错,一定要删除宝贝的星星吗?")
+                .create().show();
+
     }
 
 

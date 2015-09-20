@@ -116,4 +116,12 @@ public class StarController {
     }
 
 
+    /**
+     * 删除星星记录.
+     *
+     * @param id 记录id.
+     */
+    public void deleteStar(Long id) {
+        dbh.deleteStar(id);
+    }
 }

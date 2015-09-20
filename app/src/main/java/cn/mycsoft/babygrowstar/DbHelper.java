@@ -90,4 +90,25 @@ public class DbHelper extends SQLiteOpenHelper {
 
         }
     }
+
+    /**
+     * 删除星星记录.
+     *
+     * @param id 记录id.
+     */
+    public long deleteStar(Long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.delete("star_record", "_id = ?",
+                    new String[]{String.valueOf(id)});
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+
+        }
+    }
 }

@@ -81,11 +81,15 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="star_blue_button">
+    <style name="star_default_button">
         <item name="android:background">@drawable/star_blue_button</item>
         <item name="android:clickable">true</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="star_danger_button" parent="star_default_button">
+        <item name="android:background">@drawable/star_red_button</item>
     </style>
 
 

@@ -164,7 +164,7 @@
 
             <Button
                 android:id="@+id/dummy_button"
-                style="@style/star_blue_button"
+                style="@style/star_default_button"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
 
