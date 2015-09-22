@@ -32,15 +32,6 @@ import cn.mycsoft.babygrowstar.entity.StarRecord;
  */
 public class PayItemFragment extends AbstractFragment implements AbsListView.OnItemClickListener, AbsListView.OnItemLongClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -68,32 +59,12 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
     public PayItemFragment() {
     }
 
-    // TODO: Rename and change types of parameters
-    public static PayItemFragment newInstance(String param1, String param2) {
-        PayItemFragment fragment = new PayItemFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-//                R.layout.pay_item_row_item, R.id.label, DummyContent.ITEMS);
-
-//        mAdapter = new SimpleCursorAdapter(getActivity(), R.layout.pay_item_row_item, c,
-//                new String[]{"desc", "number"},
-//                new int[]{R.id.label, R.id.star_number},
-//                1);
     }
 
     private void initDate() {
@@ -259,7 +230,11 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        /**
+         * 选择星星记录时.
+         *
+         * @param id 星星id.
+         */
         public void onStarSelected(Long id);
     }
 
