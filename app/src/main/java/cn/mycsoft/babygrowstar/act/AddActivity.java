@@ -203,7 +203,14 @@ public class AddActivity extends AbstractLevel2Activity {
 
     private void save() {
         StarRecord star = new StarRecord();
-        star.setNumber(Integer.parseInt(numberEt.getText().toString()));
+
+        //验证数量输入是否正确.
+        String noText = numberEt.getText().toString();
+        if (noText.isEmpty()) {
+            Toast.makeText(this, "请输入星星的数量", Toast.LENGTH_LONG).show();
+            return;
+        }
+        star.setNumber(Integer.parseInt(noText));
         star.setType(StarRecord.Type.add);
         star.setTime(createTime.getTime());
         star.setDesc(descEt.getText().toString());
