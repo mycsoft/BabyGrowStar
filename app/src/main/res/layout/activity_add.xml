@@ -14,16 +14,14 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="119dp"
             android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
                 style="@style/editor_label"
-                android:text="星星的数量" />
+                android:text="@string/label_star_number" />
 
             <EditText
                 android:id="@+id/number"
@@ -40,12 +38,13 @@
             <EditText
                 android:id="@+id/desc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/textView3"
                 style="@style/editor_label"
-                android:text="时间" />
+                android:text="@string/label_time" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +60,6 @@
                     android:background="@drawable/star_blue_button"
                     android:clickable="true"
                     android:drawableLeft="@drawable/ic_event_white_24dp"
-                    android:editable="false"
                     android:gravity="center_vertical|center_horizontal"
                     android:paddingLeft="8dp"
                     android:text="2015年4月23日"

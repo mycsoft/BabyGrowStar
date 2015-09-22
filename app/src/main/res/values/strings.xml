@@ -11,6 +11,8 @@
     <string name="action_add">添加</string>
     <string name="action_save">保存</string>
     <string name="title_activity_edit">修改记录</string>
+    <string name="label_star_number">星星的数量</string>
+    <string name="label_time">时间</string>
 
 
 </resources>
