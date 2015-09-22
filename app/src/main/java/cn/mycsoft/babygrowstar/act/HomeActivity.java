@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
@@ -154,15 +153,15 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
                         ball.setVisibility(View.VISIBLE);
                         UmengUpdateAgent.showUpdateDialog(mContext, updateInfo);
                         break;
-                    case UpdateStatus.No: // has no update
-                        Toast.makeText(mContext, "没有更新", Toast.LENGTH_SHORT).show();
-                        break;
-                    case UpdateStatus.NoneWifi: // none wifi
-                        Toast.makeText(mContext, "没有wifi连接， 只在wifi下更新", Toast.LENGTH_SHORT).show();
-                        break;
-                    case UpdateStatus.Timeout: // time out
-                        Toast.makeText(mContext, "超时", Toast.LENGTH_SHORT).show();
-                        break;
+//                    case UpdateStatus.No: // has no update
+//                        Toast.makeText(mContext, "没有更新", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case UpdateStatus.NoneWifi: // none wifi
+//                        Toast.makeText(mContext, "没有wifi连接， 只在wifi下更新", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case UpdateStatus.Timeout: // time out
+//                        Toast.makeText(mContext, "超时", Toast.LENGTH_SHORT).show();
+//                        break;
                 }
             }
         });
