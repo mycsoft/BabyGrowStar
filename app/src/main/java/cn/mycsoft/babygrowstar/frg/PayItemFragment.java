@@ -97,55 +97,57 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
     }
 
     private void initDate() {
-        Cursor c = getController().findInputList();
-        mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.pay_item_row_item, c, 1) {
-            @Override
-            public void bindView(View view, Context context, Cursor cursor) {
-                TextView titleTx, numberTx, timeTx;
-                titleTx = (TextView) view.findViewById(R.id.label);
-                numberTx = (TextView) view.findViewById(R.id.star_number);
-                timeTx = (TextView) view.findViewById(R.id.time);
-                StarRecord star = StarRecord.parse(cursor);
-                titleTx.setText(star.getDesc());
-                numberTx.setText(String.valueOf(star.getNumber()));
+        //如果正在关闭应用或窗口时,调用此方法,可能会出异常.
+        if (getActivity() != null) {
+            Cursor c = getController().findInputList();
+            mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.pay_item_row_item, c, 1) {
+                @Override
+                public void bindView(View view, Context context, Cursor cursor) {
+                    TextView titleTx, numberTx, timeTx;
+                    titleTx = (TextView) view.findViewById(R.id.label);
+                    numberTx = (TextView) view.findViewById(R.id.star_number);
+                    timeTx = (TextView) view.findViewById(R.id.time);
+                    StarRecord star = StarRecord.parse(cursor);
+                    titleTx.setText(star.getDesc());
+                    numberTx.setText(String.valueOf(star.getNumber()));
 
-                Calendar now = Calendar.getInstance();
-                Calendar time = Calendar.getInstance();
-                time.setTime(star.getTime());
-                String timeString = null;
-                DateFormat format = null;
-                if (now.get(Calendar.YEAR) == time.get(Calendar.YEAR)) {
-                    //同一年.
+                    Calendar now = Calendar.getInstance();
+                    Calendar time = Calendar.getInstance();
+                    time.setTime(star.getTime());
+                    String timeString = null;
+                    DateFormat format = null;
+                    if (now.get(Calendar.YEAR) == time.get(Calendar.YEAR)) {
+                        //同一年.
 
-                    //与今天的差距(天).
-                    int dT = now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR);
-                    switch (dT) {
-                        case 0: //今天显示时间
-                            format = new SimpleDateFormat("HH:mm");
-                            timeString = format.format(time.getTime());
+                        //与今天的差距(天).
+                        int dT = now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR);
+                        switch (dT) {
+                            case 0: //今天显示时间
+                                format = new SimpleDateFormat("HH:mm");
+                                timeString = format.format(time.getTime());
 
-                            break;
-                        case 1: //昨天
-                            timeString = "昨天";
-                            break;
-                        case 2: //前天
-                            timeString = "前天";
-                            break;
-                        default:    //同年,只显示月日.
-                            format = new SimpleDateFormat("MM月dd日");
-                            timeString = format.format(time.getTime());
-                            break;
+                                break;
+                            case 1: //昨天
+                                timeString = "昨天";
+                                break;
+                            case 2: //前天
+                                timeString = "前天";
+                                break;
+                            default:    //同年,只显示月日.
+                                format = new SimpleDateFormat("MM月dd日");
+                                timeString = format.format(time.getTime());
+                                break;
+                        }
+
+                    } else {
+                        //不在同一年,只显示到日期.
+                        format = new SimpleDateFormat("yyyy年MM月dd日");
+                        timeString = format.format(time.getTime());
                     }
 
-                } else {
-                    //不在同一年,只显示到日期.
-                    format = new SimpleDateFormat("yyyy年MM月dd日");
-                    timeString = format.format(time.getTime());
+                    timeTx.setText(timeString);
+
                 }
-
-                timeTx.setText(timeString);
-
-            }
 
 //            private void setText(View view,String column,int id){
 //                TextView titleTx;
@@ -154,10 +156,10 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
 //            }
 
 
-        };
+            };
 
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-
+            ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        }
     }
 
     @Override
