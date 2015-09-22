@@ -78,18 +78,21 @@ public class AddActivity extends AbstractLevel2Activity {
         dateEt = (TextView) findViewById(R.id.date);
         timeEt = (TextView) findViewById(R.id.time);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
-
-        actionBar.setDisplayShowHomeEnabled(true);
+        if (actionBar != null)
+            actionBar.setDisplayShowHomeEnabled(true);
 
         //编辑时初始化信息.
         if (mode == Mode.edit) {
             initDateForEdit(id);
             //修改显示的标题栏.
-            getActionBar().setTitle(R.string.title_activity_edit);
-            actionBar.setIcon(R.drawable.ic_create_white_24dp);
+            if (actionBar != null) {
+                actionBar.setTitle(R.string.title_activity_edit);
+                actionBar.setIcon(R.drawable.ic_create_white_24dp);
+            }
         } else {
-            //add
-            actionBar.setIcon(R.drawable.ic_add_box_white_24dp);
+            if (actionBar != null)
+                //add
+                actionBar.setIcon(R.drawable.ic_add_box_white_24dp);
             //新增时不显示删除按钮.
             deleteBtn.setVisibility(View.GONE);
 
