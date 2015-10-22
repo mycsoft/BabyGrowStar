@@ -14,6 +14,7 @@
     <string name="label_star_number">星星的数量</string>
     <string name="label_time">时间</string>
     <string name="redeem_button">兑换</string>
+    <string name="title_activity_add_redeem">添加兑换记录</string>
 
 
 </resources>

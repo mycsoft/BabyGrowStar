@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
@@ -225,8 +224,8 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
     public void openRedeem(View v) {
 //        startActivity(new Intent(this,AddActivity.class));
-//        AddActivity.startForAdd(this, 1000);
-        Toast.makeText(this, "代码测试中...", Toast.LENGTH_SHORT);
+        AddRedeemActivity.startForAdd(this, 1000);
+//        Toast.makeText(this, "代码测试中...", Toast.LENGTH_SHORT);
     }
 
     public void update(View v) {

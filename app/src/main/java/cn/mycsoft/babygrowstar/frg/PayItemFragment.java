@@ -60,7 +60,6 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +80,18 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
                     StarRecord star = StarRecord.parse(cursor);
                     titleTx.setText(star.getDesc());
                     numberTx.setText(String.valueOf(star.getNumber()));
+
+                    //============================================
+                    //类型颜色
+                    int typeColor = getResources().getColor(R.color.add_star_text);
+                    if (star.getType() == StarRecord.Type.use) {
+                        typeColor = getResources().getColor(R.color.redeem_text);
+                    }
+                    numberTx.setTextColor(typeColor);
+                    titleTx.setTextColor(typeColor);
+                    timeTx.setTextColor(typeColor);
+                    //============================================
+
 
                     Calendar now = Calendar.getInstance();
                     Calendar time = Calendar.getInstance();
@@ -178,7 +189,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         editbar = (ViewGroup) view.findViewById(R.id.edit_pane);
-        removeBtn = (ImageButton) view.findViewById(R.id.redeem_btn);
+        removeBtn = (ImageButton) view.findViewById(R.id.remove_btn);
         if (editbar.getVisibility() == View.VISIBLE) {
             //隐藏工具栏.
             editbar.setVisibility(View.GONE);
@@ -213,7 +224,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
         //长按删除.
         //显示删除按钮.
         editbar = (ViewGroup) view.findViewById(R.id.edit_pane);
-        removeBtn = (ImageButton) view.findViewById(R.id.redeem_btn);
+        removeBtn = (ImageButton) view.findViewById(R.id.remove_btn);
         editbar.setVisibility(View.VISIBLE);
         return true;
     }

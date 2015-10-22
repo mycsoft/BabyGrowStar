@@ -36,6 +36,10 @@
             android:label="@string/title_activity_add"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".act.AddRedeemActivity"
+            android:label="@string/title_activity_add_redeem"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".act.InputListAct"
             android:label="@string/title_activity_input_list"
             android:screenOrientation="portrait"></activity>
