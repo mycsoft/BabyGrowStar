@@ -178,7 +178,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         editbar = (ViewGroup) view.findViewById(R.id.edit_pane);
-        removeBtn = (ImageButton) view.findViewById(R.id.remove_btn);
+        removeBtn = (ImageButton) view.findViewById(R.id.redeem_btn);
         if (editbar.getVisibility() == View.VISIBLE) {
             //隐藏工具栏.
             editbar.setVisibility(View.GONE);
@@ -213,7 +213,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
         //长按删除.
         //显示删除按钮.
         editbar = (ViewGroup) view.findViewById(R.id.edit_pane);
-        removeBtn = (ImageButton) view.findViewById(R.id.remove_btn);
+        removeBtn = (ImageButton) view.findViewById(R.id.redeem_btn);
         editbar.setVisibility(View.VISIBLE);
         return true;
     }
