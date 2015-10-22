@@ -13,7 +13,7 @@ import cn.mycsoft.babygrowstar.StarController;
  */
 public abstract class AbstractActivity extends Activity {
 
-    StarApp starApp;
+    protected StarApp starApp;
     private StarController controller;
 
     @Override

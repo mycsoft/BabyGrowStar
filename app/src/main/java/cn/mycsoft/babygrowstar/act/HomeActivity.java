@@ -14,6 +14,7 @@ import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.entity.StarRecord;
 import cn.mycsoft.babygrowstar.frg.PayItemFragment;
 import cn.mycsoft.babygrowstar.util.SystemUiHider;
 
@@ -237,11 +238,15 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
     }
 
-    @Override
-    public void onStarSelected(Long id) {
-        AddActivity.startForEdit(this, id, 2000);
-    }
+//    @Override
+//    public void onStarSelected(Long id) {
+//        AddActivity.startForEdit(this, id, 2000);
+//    }
 
+    @Override
+    public void onStarSelected(StarRecord star) {
+        starApp.openEditAct(this, star);
+    }
 
     //============= 任务清单 ======================
     //实现保存添加星星

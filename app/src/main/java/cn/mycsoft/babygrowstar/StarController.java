@@ -122,4 +122,5 @@ public class StarController {
     public void deleteStar(Long id) {
         dbh.deleteStar(id);
     }
+
 }

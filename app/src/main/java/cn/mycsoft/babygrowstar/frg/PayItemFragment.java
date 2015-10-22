@@ -138,6 +138,10 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
 //            }
 
 
+                @Override
+                public Object getItem(int position) {
+                    return StarRecord.parse((Cursor) super.getItem(position));
+                }
             };
 
             ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
@@ -197,7 +201,8 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onStarSelected(mAdapter.getItemId(position));
+//                mListener.onStarSelected(mAdapter.getItemId(position));
+                mListener.onStarSelected((StarRecord) mAdapter.getItem(position));
             }
         }
     }
@@ -245,8 +250,18 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
          * 选择星星记录时.
          *
          * @param id 星星id.
+         * @deprecated
+         * @see #onStarSelected(StarRecord)
          */
-        public void onStarSelected(Long id);
+//        @Deprecated
+//        public void onStarSelected(Long id);
+
+        /**
+         * 选择星星记录时.
+         *
+         * @param star 星星信息。.
+         */
+        public void onStarSelected(StarRecord star);
     }
 
 }

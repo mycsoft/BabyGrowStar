@@ -3,6 +3,9 @@ package cn.mycsoft.babygrowstar;
 import android.app.Application;
 
 import cn.mycsoft.babygrowstar.act.AbstractActivity;
+import cn.mycsoft.babygrowstar.act.AddActivity;
+import cn.mycsoft.babygrowstar.act.AddRedeemActivity;
+import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 /**
  * 星星应用主类.
@@ -42,7 +45,19 @@ public class StarApp extends Application {
 //        UmengUpdateAgent.silentUpdate(this);
     }
 
-    public void addActivity(AbstractActivity activity){
+    public void addActivity(AbstractActivity activity) {
         activity.setController(new StarController(activity));
+    }
+
+
+    public void openEditAct(AbstractActivity context, StarRecord star) {
+        switch (star.getType()) {
+            case add:
+                AddActivity.startForEdit(context, star.getId() * 1l, 2000);
+                break;
+            case use:
+                AddRedeemActivity.startForEdit(context, star.getId() * 1l, 2000);
+                break;
+        }
     }
 }

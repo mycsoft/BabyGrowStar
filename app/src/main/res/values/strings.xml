@@ -10,11 +10,12 @@
     <string name="action_settings">设置</string>
     <string name="action_add">添加</string>
     <string name="action_save">保存</string>
-    <string name="title_activity_edit">修改记录</string>
+    <string name="title_activity_edit">修改添加记录</string>
     <string name="label_star_number">星星的数量</string>
     <string name="label_time">时间</string>
     <string name="redeem_button">兑换</string>
     <string name="title_activity_add_redeem">添加兑换记录</string>
+    <string name="title_activity_edit_redeem">修改兑换记录</string>
 
 
 </resources>

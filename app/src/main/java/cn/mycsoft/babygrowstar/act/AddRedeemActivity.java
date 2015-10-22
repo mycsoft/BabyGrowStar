@@ -89,7 +89,7 @@ public class AddRedeemActivity extends AbstractLevel2Activity {
             initDateForEdit(id);
             //修改显示的标题栏.
             if (actionBar != null) {
-                actionBar.setTitle(R.string.title_activity_edit);
+                actionBar.setTitle(R.string.title_activity_edit_redeem);
                 actionBar.setIcon(R.drawable.ic_create_white_24dp);
             }
         } else {

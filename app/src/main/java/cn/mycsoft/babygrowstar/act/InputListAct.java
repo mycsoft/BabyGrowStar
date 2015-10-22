@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.entity.StarRecord;
 import cn.mycsoft.babygrowstar.frg.InputListFragment;
 import cn.mycsoft.babygrowstar.frg.PayItemFragment;
 
@@ -61,8 +62,13 @@ public class InputListAct extends AbstractLevel2Activity implements InputListFra
 
     }
 
+//    @Override
+//    public void onStarSelected(Long id) {
+//        AddActivity.startForEdit(this, id, 2000);
+//    }
+
     @Override
-    public void onStarSelected(Long id) {
-        AddActivity.startForEdit(this, id, 2000);
+    public void onStarSelected(StarRecord star) {
+        starApp.openEditAct(this, star);
     }
 }
