@@ -106,7 +106,7 @@ public class AddRedeemActivity extends AbstractLevel2Activity {
 
     private void initDateForEdit(Long id) {
         StarRecord star = getController().getStarById(id);
-        numberEt.setText(String.valueOf(star.getNumber()));
+        numberEt.setText(String.valueOf(star.getNumber() * -1));
         descEt.setText(star.getDesc());
         createTime.setTime(star.getTime());
     }
@@ -216,7 +216,7 @@ public class AddRedeemActivity extends AbstractLevel2Activity {
             Toast.makeText(this, "请输入星星的数量", Toast.LENGTH_LONG).show();
             return;
         }
-        star.setNumber(Integer.parseInt(noText));
+        star.setNumber(Integer.parseInt(noText) * -1);
         star.setType(StarRecord.Type.use);
         star.setTime(createTime.getTime());
         star.setDesc(descEt.getText().toString());
