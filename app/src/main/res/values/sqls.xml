@@ -11,6 +11,18 @@
     `desc` varchar
     )
     </string>
+
+    <string name="sql_task_create">
+    create table star_task (
+    _id Integer PRIMARY KEY AUTOINCREMENT,
+    number Integer not null,
+    createTime DaLong not null,
+    modifyTime DaLong not null,
+    type Varchar,
+    `desc` varchar,
+    `name` varchar
+    )
+    </string>
     <!--<string name="sql_star_insert">insert into star_record (number,`desc`,type) value(%d,%s,%s)</string>-->
     <string name="sql_star_insert">insert into star_record (number,`desc`,type,time) values (%1$d,%2$s,%3$s,%4$d)</string>
     <string name="sql_star_total">select sum(number) from star_record</string>

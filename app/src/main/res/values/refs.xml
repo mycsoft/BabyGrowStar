@@ -17,5 +17,6 @@
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
     <item name="fragment_inputlist" type="layout">@layout/fragment_inputlist_list</item>
+    <item name="fragment_tasklist" type="layout">@layout/fragment_tasklist_list</item>
 
 </resources>

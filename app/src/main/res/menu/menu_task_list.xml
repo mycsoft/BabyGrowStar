@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cn.mycsoft.babygrowstar.act.InputListAct">
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_add_white_36dp"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_add" />
+</menu>

@@ -5,6 +5,7 @@ import android.app.Fragment;
 import cn.mycsoft.babygrowstar.StarApp;
 import cn.mycsoft.babygrowstar.StarController;
 import cn.mycsoft.babygrowstar.act.AbstractActivity;
+import cn.mycsoft.babygrowstar.act.StarAppContext;
 
 /**
  * Fragment基类.
@@ -12,16 +13,21 @@ import cn.mycsoft.babygrowstar.act.AbstractActivity;
  */
 public abstract class AbstractFragment extends Fragment {
 
+    @Deprecated
     public AbstractActivity getStarAct() {
         return (AbstractActivity) getActivity();
     }
 
+    public StarAppContext getStarAppContext() {
+        return (StarAppContext) getActivity();
+    }
+
     public StarApp getApp() {
-        return (StarApp) getStarAct().getApplication();
+        return getStarAppContext().getStarApp();
     }
 
     public StarController getController() {
-        return getStarAct().getController();
+        return getStarAppContext().getController();
     }
 
 

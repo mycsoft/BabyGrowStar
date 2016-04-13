@@ -5,6 +5,7 @@ import android.app.Application;
 import cn.mycsoft.babygrowstar.act.AbstractActivity;
 import cn.mycsoft.babygrowstar.act.AddActivity;
 import cn.mycsoft.babygrowstar.act.AddRedeemActivity;
+import cn.mycsoft.babygrowstar.act.StarAppContext;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 /**
@@ -45,7 +46,7 @@ public class StarApp extends Application {
 //        UmengUpdateAgent.silentUpdate(this);
     }
 
-    public void addActivity(AbstractActivity activity) {
+    public void addActivity(StarAppContext activity) {
         activity.setController(new StarController(activity));
     }
 

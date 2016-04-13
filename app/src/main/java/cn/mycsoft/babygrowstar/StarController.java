@@ -5,6 +5,7 @@ import android.database.Cursor;
 
 import java.util.Calendar;
 
+import cn.mycsoft.babygrowstar.act.StarAppContext;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 
 /**
@@ -22,6 +23,12 @@ public class StarController {
 
     }
 
+    public StarController(StarAppContext context) {
+        this.context = context.getContext();
+        dbh = new DbHelper(this.context);
+
+    }
+
 
     /**
      * 保存星星记录.
@@ -35,7 +42,7 @@ public class StarController {
 //        SQLiteDatabase dbh = dbh.getWritableDatabase();
 //        dbh.close();
 //        dbh = null;
-//        star.setTime(new Date());
+//        star.setCreateTime(new Date());
         dbh.insertStar(star);
 //        StatService.onEvent(context, "add star", "save", star.getNumber());
     }

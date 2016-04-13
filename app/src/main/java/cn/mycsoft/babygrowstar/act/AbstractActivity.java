@@ -1,6 +1,7 @@
 package cn.mycsoft.babygrowstar.act;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import cn.mycsoft.babygrowstar.StarApp;
@@ -11,7 +12,7 @@ import cn.mycsoft.babygrowstar.StarController;
 /**
  * Created by MaYichao on 2015/8/30.
  */
-public abstract class AbstractActivity extends Activity {
+public abstract class AbstractActivity extends Activity implements StarAppContext {
 
     protected StarApp starApp;
     private StarController controller;
@@ -52,5 +53,15 @@ public abstract class AbstractActivity extends Activity {
 
     public void setController(StarController controller) {
         this.controller = controller;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public StarApp getStarApp() {
+        return starApp;
     }
 }

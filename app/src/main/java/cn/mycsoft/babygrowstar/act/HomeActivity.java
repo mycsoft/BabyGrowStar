@@ -191,6 +191,15 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         startActivity(new Intent(this, InputListAct.class));
     }
 
+    /**
+     * 打开设置画面
+     *
+     * @param view
+     */
+    public void openSettingView(View view) {
+        startActivity(new Intent(this, SettingsActivity.class));
+    }
+
 //    Handler mHideHandler = new Handler();
 //    Runnable mHideRunnable = new Runnable() {
 //        @Override

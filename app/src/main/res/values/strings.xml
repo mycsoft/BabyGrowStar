@@ -16,6 +16,7 @@
     <string name="redeem_button">兑换</string>
     <string name="title_activity_add_redeem">添加兑换记录</string>
     <string name="title_activity_edit_redeem">修改兑换记录</string>
+    <string name="pref_header_task_manager">任务管理</string>
 
 
 </resources>

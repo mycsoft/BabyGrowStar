@@ -9,6 +9,14 @@
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
     </style>
 
+    <style name="SettingTheme" parent="android:Theme.DeviceDefault.Light">
+        <!-- Customize your theme here. -->
+
+        <!--<item name="android:background">@color/background</item>-->
+        <!--<item name="android:windowBackground">@color/background</item>-->
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@null</item>

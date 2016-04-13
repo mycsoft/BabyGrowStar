@@ -15,7 +15,7 @@ public class DbHelper extends SQLiteOpenHelper {
     Context context;
 
     public DbHelper(Context context) {
-        super(context, "babyGrowStar", null, 1);
+        super(context, "babyGrowStar", null, 2);
         this.context = context;
     }
 
@@ -23,14 +23,26 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 //        db.beginTransaction();
 //        dbh.execSQL(StarRecord.Sql.CREATE);
-        db.execSQL(context.getResources().getString(R.string.sql_star_create));
+        createFor1(db);
 //        db.close();
 //        db.endTransaction();
     }
 
+    private void createFor1(SQLiteDatabase db) {
+        db.execSQL(context.getResources().getString(R.string.sql_star_create));
+    }
+
+    private void createFor2(SQLiteDatabase db) {
+        db.execSQL(context.getResources().getString(R.string.sql_task_create));
+    }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        switch (oldVersion) {
+            case 1:
+                createFor2(db);
+        }
     }
 
 
