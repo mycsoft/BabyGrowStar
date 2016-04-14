@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <!-- translucent system bars -->
+        <!--<item name="android:statusBarColor">@color/status_color</item>-->
+        <item name="android:colorPrimaryDark">@color/status_color</item>
+        <item name="android:colorPrimary">@color/background</item>
+
+        <!--<item name="android:background">#fff</item>-->
+        <!--<item name="android:windowBackground">@color/background</item>-->
+
+        <item name="android:action">true</item>
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:actionBarStyle">@style/ActionBarStyle</item>-->
+
+    </style>
+
+    <style name="ActionBarStyle" parent="android:Widget.Material.ActionBar">
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme"></style>
+
+    <style name="SettingTheme" parent="BaseTheme">
+
+    </style>
+
+    <style name="FullscreenTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <!--<item name="android:statusBarColor">@color/status_color</item>-->
+        <item name="android:colorPrimaryDark">@color/status_color</item>
+    </style>
+
+</resources>
