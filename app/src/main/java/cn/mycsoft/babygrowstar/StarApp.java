@@ -85,4 +85,16 @@ public class StarApp extends Application {
     public void openManualAddStar(Activity activity, int resultCode) {
         AddActivity.startForAdd(activity, 1000);
     }
+
+    /**
+     * 根据任务生成添加星星.
+     *
+     * @param activity
+     * @param requestCode
+     * @param taskId
+     */
+    public void openAddStarWithTask(Activity activity, int requestCode, long taskId) {
+        Intent i = new Intent(activity, AddActivity.class).putExtra("taskId", taskId);
+        activity.startActivityForResult(i, requestCode);
+    }
 }

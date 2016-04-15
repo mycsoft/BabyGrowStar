@@ -24,6 +24,7 @@ import java.util.Calendar;
 
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
+import cn.mycsoft.babygrowstar.entity.StarTask;
 
 public class AddActivity extends AbstractLevel2Activity {
 
@@ -66,6 +67,7 @@ public class AddActivity extends AbstractLevel2Activity {
         setContentView(R.layout.activity_add);
         ActionBar actionBar = getActionBar();
         id = getIntent().getLongExtra("id", -1);
+        Long taskId = getIntent().getLongExtra("taskId", -1);
         if (id < 0) {
             id = null;
             mode = Mode.add;
@@ -79,8 +81,8 @@ public class AddActivity extends AbstractLevel2Activity {
         dateEt = (TextView) findViewById(R.id.date);
         timeEt = (TextView) findViewById(R.id.time);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
-        if (actionBar != null)
-            actionBar.setDisplayShowHomeEnabled(true);
+//        if (actionBar != null)
+//            actionBar.setDisplayShowHomeEnabled(true);
 
         //编辑时初始化信息.
         if (mode == Mode.edit) {
@@ -88,14 +90,26 @@ public class AddActivity extends AbstractLevel2Activity {
             //修改显示的标题栏.
             if (actionBar != null) {
                 actionBar.setTitle(R.string.title_activity_edit);
-                actionBar.setIcon(R.drawable.ic_create_white_24dp);
+//                actionBar.setIcon(R.drawable.ic_create_white_24dp);
             }
         } else {
             if (actionBar != null)
                 //add
-                actionBar.setIcon(R.drawable.ic_add_box_white_24dp);
+//                actionBar.setIcon(R.drawable.ic_add_box_white_24dp);
             //新增时不显示删除按钮.
             deleteBtn.setVisibility(View.GONE);
+
+            if (taskId != -1) {
+                //按任务创建星星记录.
+
+                //取出任务信息
+                StarTask task = getController().getTaskById(taskId);
+                if (task != null) {
+                    //以任务信息为模板,修改默认值.
+                    numberEt.setText(String.valueOf(task.getNumber()));
+                    descEt.setText(task.getName());
+                }
+            }
 
         }
 

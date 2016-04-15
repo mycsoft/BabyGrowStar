@@ -135,6 +135,7 @@ public class AddStarFirstActivityFragment extends AbstractFragment implements Ab
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        //根据任务id,添加星星.
+        getApp().openAddStarWithTask(getActivity(), 1000, l);
     }
 }
