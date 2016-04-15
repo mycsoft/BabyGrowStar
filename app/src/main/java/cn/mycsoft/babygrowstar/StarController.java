@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import cn.mycsoft.babygrowstar.act.StarAppContext;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
+import cn.mycsoft.babygrowstar.entity.StarTask;
 
 /**
  * 核心控制器.
@@ -134,4 +135,34 @@ public class StarController {
         dbh.deleteStar(id);
     }
 
+    /**
+     * 查询任务
+     *
+     * @param id
+     * @return
+     */
+    public StarTask getTaskById(Long id) {
+        Cursor c = dbh.query(getSql(R.string.sql_select_task_by_id, id));
+        if (c.getCount() < 1) {
+            return null;
+        }
+
+        c.moveToNext();
+        StarTask star = StarTask.parse(c);
+        return star;
+
+    }
+
+    public void insertTask(StarTask task) {
+        //保存任务.
+        dbh.insertTask(task);
+    }
+
+    public void updateTask(StarTask task) {
+        dbh.updateTask(task);
+    }
+
+    public void deleteTask(Long id) {
+        dbh.deleteTask(id);
+    }
 }

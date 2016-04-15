@@ -55,6 +55,11 @@
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"
             android:theme="@style/SettingTheme"></activity>
+
+        <activity
+            android:name=".act.AddTaskActivity"
+            android:label="@string/title_activity_add_task"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.act.AddTaskActivity;
 
 /**
  * A fragment representing a list of Items.
@@ -45,7 +45,7 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
     /**
      * The fragment's ListView/GridView.
      */
-//    private AbsListView mListView;
+    private AbsListView mListView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
@@ -94,12 +94,12 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
         View view = inflater.inflate(R.layout.fragment_tasklist, container, false);
 
         // Set the adapter
-//        mListView = (AbsListView) view.findViewById(android.R.id.list);
+        mListView = (AbsListView) view.findViewById(android.R.id.list);
 //        initListDate();
 //        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
-//        mListView.setOnItemClickListener(this);
+        mListView.setOnItemClickListener(this);
 
         //下拉刷新组件
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
@@ -154,7 +154,7 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
 //            // fragment is attached to one) that an item has been selected.
 //            mListener.onStarSelected(DummyContent.ITEMS.get(position).id);
 //        }
-
+        AddTaskActivity.startForEdit(getActivity(), id, AddTaskActivity.R_CHANGED);
 
     }
 
@@ -163,7 +163,8 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
         switch (item.getItemId()) {
             case R.id.action_add:
                 //打开添加任务画面。
-                Toast.makeText(getActivity(), "add", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "add", Toast.LENGTH_SHORT).show();
+                AddTaskActivity.startForAdd(getActivity(), 1000);
                 return true;
             case android.R.id.home:
                 //返回上一画面。

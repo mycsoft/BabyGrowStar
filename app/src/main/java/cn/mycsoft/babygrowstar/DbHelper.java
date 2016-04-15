@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import cn.mycsoft.babygrowstar.entity.StarRecord;
+import cn.mycsoft.babygrowstar.entity.StarTask;
 
 /**
  * Created by MaYichao on 2015/8/30.
@@ -48,6 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /**
      * 更新或插入.
+     *
      * @param sql
      * @return
      */
@@ -63,16 +65,17 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor query(String sql) {
         SQLiteDatabase db = getReadableDatabase();
-        return db.rawQuery(sql,null);
+        return db.rawQuery(sql, null);
 
     }
 
     /**
      * 添加星星
+     *
      * @param star
      * @return
      */
-    public long insertStar(StarRecord star){
+    public long insertStar(StarRecord star) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try {
@@ -81,7 +84,7 @@ public class DbHelper extends SQLiteOpenHelper {
 //        db.close();
             db.setTransactionSuccessful();
             return count;
-        }finally {
+        } finally {
             db.endTransaction();
 
         }
@@ -123,4 +126,59 @@ public class DbHelper extends SQLiteOpenHelper {
 
         }
     }
+
+    public long insertTask(StarTask task) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.insert("star_task", null, task.toContentValues());
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+
+        }
+    }
+
+    public long updateTask(StarTask task) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.update("star_task", task.toContentValues(), "_id = ?",
+                    new String[]{String.valueOf(task.getId())});
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+
+        }
+    }
+
+    public long deleteTask(Long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.delete("star_task", "_id = ?",
+                    new String[]{String.valueOf(id)});
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+
+        }
+    }
+
+//    /**
+//     * 数据库操作类.
+//     */
+//    private abstract class DHOperater {
+//
+//
+//    }
 }
