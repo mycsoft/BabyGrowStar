@@ -14,12 +14,9 @@ import android.widget.ListAdapter;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
+import cn.mycsoft.babygrowstar.util.DateUtils;
 
 /**
  * A fragment representing a list of Items.
@@ -90,44 +87,8 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
                     numberTx.setTextColor(typeColor);
                     titleTx.setTextColor(typeColor);
                     timeTx.setTextColor(typeColor);
-                    //============================================
 
-
-                    Calendar now = Calendar.getInstance();
-                    Calendar time = Calendar.getInstance();
-                    time.setTime(star.getTime());
-                    String timeString = null;
-                    DateFormat format = null;
-                    if (now.get(Calendar.YEAR) == time.get(Calendar.YEAR)) {
-                        //同一年.
-
-                        //与今天的差距(天).
-                        int dT = now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR);
-                        switch (dT) {
-                            case 0: //今天显示时间
-                                format = new SimpleDateFormat("HH:mm");
-                                timeString = format.format(time.getTime());
-
-                                break;
-                            case 1: //昨天
-                                timeString = "昨天";
-                                break;
-                            case 2: //前天
-                                timeString = "前天";
-                                break;
-                            default:    //同年,只显示月日.
-                                format = new SimpleDateFormat("MM月dd日");
-                                timeString = format.format(time.getTime());
-                                break;
-                        }
-
-                    } else {
-                        //不在同一年,只显示到日期.
-                        format = new SimpleDateFormat("yyyy年MM月dd日");
-                        timeString = format.format(time.getTime());
-                    }
-
-                    timeTx.setText(timeString);
+                    timeTx.setText(DateUtils.formatTimeFromNow(star.getTime()));
 
                 }
 
@@ -144,7 +105,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
                 }
             };
 
-            ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+            mListView.setAdapter(mAdapter);
         }
     }
 
@@ -261,7 +222,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
          *
          * @param star 星星信息。.
          */
-        public void onStarSelected(StarRecord star);
+        void onStarSelected(StarRecord star);
     }
 
 }
