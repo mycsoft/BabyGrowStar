@@ -17,5 +17,13 @@
     <!--<header-->
     <!--android:fragment="cn.mycsoft.babygrowstar.act.SettingsActivity$DataSyncPreferenceFragment"-->
     <!--android:title="@string/pref_header_data_sync" />-->
+    <header
+        android:id="@+id/setting_about"
+        android:summary="作者：马翼超"
+        android:title="关于《宝贝成长星》" />
 
+    <header
+
+        android:summary="mycsoft_weixin"
+        android:title="微信公众号" />
 </preference-headers>

@@ -2,6 +2,7 @@ package cn.mycsoft.babygrowstar.act;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -16,6 +17,9 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -150,6 +154,26 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void showVersion() {
+        try {
+            String v = getStarApp().getPackageManager().getPackageInfo("cn.mycsoft.babygrowstar", 0).versionName;
+            Toast.makeText(this, "当前版本v" + v, Toast.LENGTH_LONG).show();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        if (position == 1) {
+            showVersion();
+
+        } else {
+            super.onListItemClick(l, v, position, id);
+        }
+    }
+
 
     @Override
     protected boolean isValidFragment(String fragmentName) {
