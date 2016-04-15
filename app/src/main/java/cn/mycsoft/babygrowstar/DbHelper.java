@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Date;
+
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 import cn.mycsoft.babygrowstar.entity.StarTask;
 
@@ -16,7 +18,7 @@ public class DbHelper extends SQLiteOpenHelper {
     Context context;
 
     public DbHelper(Context context) {
-        super(context, "babyGrowStar", null, 2);
+        super(context, "babyGrowStar", null, 3);
         this.context = context;
     }
 
@@ -34,7 +36,25 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void createFor2(SQLiteDatabase db) {
+        //建表
         db.execSQL(context.getResources().getString(R.string.sql_task_create));
+
+    }
+
+    private void createFor3(SQLiteDatabase db) {
+
+        //加入默认任务.
+        String[][] defTasks = {{"按时吃饭", "1"}, {"洗碗", "2"}, {"叠被子", "1"}};
+        for (String[] taskString : defTasks) {
+            StarTask task = new StarTask();
+            task.setName(taskString[0]);
+            task.setNumber(Integer.parseInt(taskString[1]));
+            task.setCreateTime(new Date());
+            task.setModifyTime(task.getCreateTime());
+            task.setType(StarTask.Type.simple);
+//            insertTask(task);
+            db.insert("star_task", null, task.toContentValues());
+        }
     }
 
 
@@ -43,6 +63,8 @@ public class DbHelper extends SQLiteOpenHelper {
         switch (oldVersion) {
             case 1:
                 createFor2(db);
+            case 2:
+                createFor3(db);
         }
     }
 
