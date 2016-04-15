@@ -36,15 +36,8 @@ public class StarController {
      * @param star
      */
     public void insertStar(StarRecord star) {
-        //TODO 保存星星
-//        dbh = new DbHelper(context);
-//        dbh.update(getSql(R.string.sql_star_insert, '\'' + star.getNumber() + '\'', '\''+star.getDesc() + '\'', '\'' + star.getType().toString() + '\'', System.currentTimeMillis()));
-//        SQLiteDatabase dbh = dbh.getWritableDatabase();
-//        dbh.close();
-//        dbh = null;
-//        star.setCreateTime(new Date());
+        //保存星星
         dbh.insertStar(star);
-//        StatService.onEvent(context, "add star", "save", star.getNumber());
     }
 
     public void updateStar(StarRecord star) {

@@ -31,15 +31,9 @@ import cn.mycsoft.babygrowstar.R;
  */
 public class InputListFragment extends AbstractFragment implements AbsListView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     SwipeRefreshLayout swipeRefreshLayout;
     //    TextView refreshTxt;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private boolean loading = false;
     private OnFragmentInteractionListener mListener;
 
@@ -63,28 +57,16 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
     public InputListFragment() {
     }
 
-    // TODO: Rename and change types of parameters
-    public static InputListFragment newInstance(String param1, String param2) {
-        InputListFragment fragment = new InputListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+////            mParam1 = getArguments().getString(ARG_PARAM1);
+////            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
 
-        // TODO: Change Adapter to display your content
-//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
 
     }
 
@@ -215,8 +197,7 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+
     }
 
     private class InputCursorAdapter extends ResourceCursorAdapter {
