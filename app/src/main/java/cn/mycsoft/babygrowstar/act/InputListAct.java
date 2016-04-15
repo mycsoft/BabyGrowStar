@@ -57,10 +57,10 @@ public class InputListAct extends AbstractLevel2Activity implements InputListFra
         }
     }
 
-    @Override
-    public void onFragmentInteraction(String id) {
-
-    }
+//    @Override
+//    public void onFragmentInteraction(String id) {
+//
+//    }
 
 //    @Override
 //    public void onStarSelected(Long id) {

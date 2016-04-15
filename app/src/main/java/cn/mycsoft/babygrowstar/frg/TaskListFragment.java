@@ -60,15 +60,6 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
     public TaskListFragment() {
     }
 
-    // TODO: Rename and change types of parameters
-    public static TaskListFragment newInstance(String param1, String param2) {
-        TaskListFragment fragment = new TaskListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,10 +69,6 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        // TODO: Change Adapter to display your content
-//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
 
     }
 
@@ -205,7 +192,9 @@ public class TaskListFragment extends AbstractFragment implements AbsListView.On
     public void reloadList() {
 //        initListDate();
 //        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-        listFragment.reload();
+        if (listFragment != null) {
+            listFragment.reload();
+        }
     }
 
     @Override

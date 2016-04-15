@@ -69,7 +69,7 @@ public class TaskItemFragment extends AbstractFragment implements AbsListView.On
         //如果正在关闭应用或窗口时,调用此方法,可能会出异常.
         if (getActivity() != null) {
             Cursor c = getController().findInputList();
-            mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.pay_item_row_item, c, 1) {
+            mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.task_item_row_item, c, 1) {
                 @Override
                 public void bindView(View view, Context context, Cursor cursor) {
                     TextView titleTx, numberTx, timeTx;
