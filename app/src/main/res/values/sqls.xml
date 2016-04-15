@@ -33,6 +33,12 @@
         ]]>
     </string>
 
+    <string name="sql_task_list">
+        <![CDATA[
+        select * from star_task  order by modifyTime desc
+        ]]>
+    </string>
+
     <string name="sql_star_total_by_time">
             <![CDATA[
         select sum(number) from star_record where time >= %1$d and time < %2$d

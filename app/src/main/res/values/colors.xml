@@ -6,5 +6,7 @@
     <color name="panel_background">#E1F5FE</color>
     <color name="redeem_text">#4caf50</color>
     <color name="add_star_text">#F57F17</color>
+    <color name="task_name">#222</color>
+    <color name="everyday_task_name">#0378af</color>
 
 </resources>

@@ -76,6 +76,17 @@ public class StarController {
     }
 
     /**
+     * 查询所有添加记录,按时间倒序.
+     *
+     * @return
+     */
+    public Cursor findTaskList() {
+        Cursor c = dbh.query(getSql(R.string.sql_task_list));
+
+        return c;
+    }
+
+    /**
      * 查询今天所有增加的星星总数.
      *
      * @return

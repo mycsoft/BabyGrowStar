@@ -13,12 +13,10 @@ import android.widget.ListAdapter;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import cn.mycsoft.babygrowstar.R;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
+import cn.mycsoft.babygrowstar.entity.StarTask;
+import cn.mycsoft.babygrowstar.util.DateUtils;
 
 /**
  * A fragment representing a list of Items.
@@ -68,7 +66,8 @@ public class TaskItemFragment extends AbstractFragment implements AbsListView.On
     private void initDate() {
         //如果正在关闭应用或窗口时,调用此方法,可能会出异常.
         if (getActivity() != null) {
-            Cursor c = getController().findInputList();
+//            Cursor c = getController().findInputList();
+            Cursor c = getController().findTaskList();
             mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.task_item_row_item, c, 1) {
                 @Override
                 public void bindView(View view, Context context, Cursor cursor) {
@@ -76,57 +75,22 @@ public class TaskItemFragment extends AbstractFragment implements AbsListView.On
                     titleTx = (TextView) view.findViewById(R.id.label);
                     numberTx = (TextView) view.findViewById(R.id.star_number);
                     timeTx = (TextView) view.findViewById(R.id.time);
-                    StarRecord star = StarRecord.parse(cursor);
-                    titleTx.setText(star.getDesc());
-                    numberTx.setText(String.valueOf(star.getNumber()));
+                    StarTask task = StarTask.parse(cursor);
+                    titleTx.setText(task.getName());
+                    numberTx.setText(String.valueOf(task.getNumber()));
 
                     //============================================
                     //类型颜色
-                    int typeColor = getResources().getColor(R.color.add_star_text);
-                    if (star.getType() == StarRecord.Type.use) {
-                        typeColor = getResources().getColor(R.color.redeem_text);
+                    int typeColor = getResources().getColor(R.color.task_name);
+                    if (task.getType() == StarTask.Type.everyday) {
+                        typeColor = getResources().getColor(R.color.everyday_task_name);
                     }
                     numberTx.setTextColor(typeColor);
                     titleTx.setTextColor(typeColor);
-                    timeTx.setTextColor(typeColor);
+//                    timeTx.setTextColor(typeColor);
                     //============================================
 
-
-                    Calendar now = Calendar.getInstance();
-                    Calendar time = Calendar.getInstance();
-                    time.setTime(star.getTime());
-                    String timeString = null;
-                    DateFormat format = null;
-                    if (now.get(Calendar.YEAR) == time.get(Calendar.YEAR)) {
-                        //同一年.
-
-                        //与今天的差距(天).
-                        int dT = now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR);
-                        switch (dT) {
-                            case 0: //今天显示时间
-                                format = new SimpleDateFormat("HH:mm");
-                                timeString = format.format(time.getTime());
-
-                                break;
-                            case 1: //昨天
-                                timeString = "昨天";
-                                break;
-                            case 2: //前天
-                                timeString = "前天";
-                                break;
-                            default:    //同年,只显示月日.
-                                format = new SimpleDateFormat("MM月dd日");
-                                timeString = format.format(time.getTime());
-                                break;
-                        }
-
-                    } else {
-                        //不在同一年,只显示到日期.
-                        format = new SimpleDateFormat("yyyy年MM月dd日");
-                        timeString = format.format(time.getTime());
-                    }
-
-                    timeTx.setText(timeString);
+                    timeTx.setText(DateUtils.formatTimeFromNow(task.getModifyTime()));
 
                 }
 
