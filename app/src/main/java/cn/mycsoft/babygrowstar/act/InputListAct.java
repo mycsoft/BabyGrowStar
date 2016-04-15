@@ -36,7 +36,8 @@ public class InputListAct extends AbstractLevel2Activity implements InputListFra
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
-            AddActivity.startForAdd(this, RQ_CODE_ADD);
+//            AddActivity.startForAdd(this, RQ_CODE_ADD);
+            getStarApp().openFastAddStar(this, RQ_CODE_ADD);
             return true;
         }
 

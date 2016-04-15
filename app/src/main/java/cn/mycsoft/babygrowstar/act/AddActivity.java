@@ -1,6 +1,7 @@
 package cn.mycsoft.babygrowstar.act;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -46,7 +47,7 @@ public class AddActivity extends AbstractLevel2Activity {
      */
     Button deleteBtn;
 
-    public static void startForAdd(AbstractActivity context, int requestCode) {
+    public static void startForAdd(Activity context, int requestCode) {
 
 //        context.startActivity(new Intent(context, AddActivity.class));
         context.startActivityForResult(new Intent(context, AddActivity.class), requestCode);

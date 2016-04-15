@@ -1,10 +1,13 @@
 package cn.mycsoft.babygrowstar;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 
 import cn.mycsoft.babygrowstar.act.AbstractActivity;
 import cn.mycsoft.babygrowstar.act.AddActivity;
 import cn.mycsoft.babygrowstar.act.AddRedeemActivity;
+import cn.mycsoft.babygrowstar.act.AddStarFirstActivity;
 import cn.mycsoft.babygrowstar.act.StarAppContext;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 
@@ -60,5 +63,26 @@ public class StarApp extends Application {
                 AddRedeemActivity.startForEdit(context, star.getId() * 1l, 2000);
                 break;
         }
+    }
+
+    /**
+     * 打开添加星星的画面.
+     *
+     * @param activity
+     * @param resultCode
+     */
+    public void openFastAddStar(Activity activity, int resultCode) {
+        //先打开快速选择画面.
+        activity.startActivityForResult(new Intent(activity, AddStarFirstActivity.class), resultCode);
+    }
+
+    /**
+     * 直接打开手动添加星星的画面.
+     *
+     * @param activity
+     * @param resultCode
+     */
+    public void openManualAddStar(Activity activity, int resultCode) {
+        AddActivity.startForAdd(activity, 1000);
     }
 }

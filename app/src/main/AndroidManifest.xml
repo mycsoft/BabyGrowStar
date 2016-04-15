@@ -54,12 +54,14 @@
             android:name=".act.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/SettingTheme"></activity>
-
+            android:theme="@style/SettingTheme" />
         <activity
             android:name=".act.AddTaskActivity"
             android:label="@string/title_activity_add_task"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".act.AddStarFirstActivity"
+            android:label="@string/title_activity_add_star_first"></activity>
     </application>
 
 </manifest>

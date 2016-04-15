@@ -229,7 +229,8 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
     public void openAdd(View v) {
 //        startActivity(new Intent(this,AddActivity.class));
-        AddActivity.startForAdd(this, 1000);
+        getStarApp().openFastAddStar(this, 1000);
+//        AddActivity.startForAdd(this, 1000);
     }
 
     public void openRedeem(View v) {
