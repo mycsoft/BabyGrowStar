@@ -78,8 +78,8 @@ public class AddTaskActivity extends AbstractLevel2Activity {
 //        dateEt = (TextView) findViewById(R.id.date);
 //        timeEt = (TextView) findViewById(R.id.time);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
-        if (actionBar != null)
-            actionBar.setDisplayShowHomeEnabled(true);
+//        if (actionBar != null)
+//            actionBar.setDisplayShowHomeEnabled(true);
 
         //编辑时初始化信息.
         if (mode == Mode.edit) {
