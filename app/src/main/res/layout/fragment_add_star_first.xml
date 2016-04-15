@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     tools:context="cn.mycsoft.babygrowstar.frg.AddStarFirstActivityFragment"
     tools:showIn="@layout/activity_add_star_first">
 
@@ -10,6 +12,7 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#fff"
         android:numColumns="3"
         tools:listitem="@layout/task_item_grid_item" />
 
