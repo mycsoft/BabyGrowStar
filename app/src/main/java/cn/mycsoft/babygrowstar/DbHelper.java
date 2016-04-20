@@ -86,7 +86,10 @@ public class DbHelper extends SQLiteOpenHelper {
             case 2:
                 createFor3(db);
             case 3:
-                doFix3Bug(db);
+                if (oldVersion == 3) {
+                    doFix3Bug(db);
+                }
+
 
         }
     }
