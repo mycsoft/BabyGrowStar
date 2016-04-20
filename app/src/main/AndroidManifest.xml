@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.mycsoft.babygrowstar">
 
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
     <application
         android:name=".StarApp"
@@ -17,7 +22,7 @@
             android:value="55fe486ee0f55a9a0500124b" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Channel ID" />
+            android:value="umeng" />
 
         <activity
             android:name=".act.HomeActivity"
@@ -62,6 +67,9 @@
         <activity
             android:name=".act.AddStarFirstActivity"
             android:label="@string/title_activity_add_star_first"></activity>
+
+
     </application>
+
 
 </manifest>
