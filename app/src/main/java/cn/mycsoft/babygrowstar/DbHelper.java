@@ -18,7 +18,7 @@ public class DbHelper extends SQLiteOpenHelper {
     Context context;
 
     public DbHelper(Context context) {
-        super(context, "babyGrowStar", null, 3);
+        super(context, "babyGrowStar", null, 4);
         this.context = context;
     }
 
@@ -27,6 +27,8 @@ public class DbHelper extends SQLiteOpenHelper {
 //        db.beginTransaction();
 //        dbh.execSQL(StarRecord.Sql.CREATE);
         createFor1(db);
+        createFor2(db);
+        createFor3(db);
 //        db.close();
 //        db.endTransaction();
     }
@@ -39,6 +41,24 @@ public class DbHelper extends SQLiteOpenHelper {
         //建表
         db.execSQL(context.getResources().getString(R.string.sql_task_create));
 
+    }
+
+    /**
+     * 修正第3版漏建任务表的错误。
+     */
+    private void doFix3Bug(SQLiteDatabase db) {
+//        SQLiteDatabase db = getWritableDatabase();
+//        db.beginTransaction();
+        //检查任务表是否存在。
+        try {
+            db.execSQL("select  count(0) from star_task");
+        } catch (Exception e) {
+            createFor2(db);
+            createFor3(db);
+        }
+
+//        db.close();
+//        db.endTransaction();
     }
 
     private void createFor3(SQLiteDatabase db) {
@@ -65,6 +85,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 createFor2(db);
             case 2:
                 createFor3(db);
+            case 3:
+                if (oldVersion == 3) {
+                    doFix3Bug(db);
+                }
+
+
         }
     }
 
