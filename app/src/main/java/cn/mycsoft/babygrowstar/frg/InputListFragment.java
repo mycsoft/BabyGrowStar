@@ -158,7 +158,9 @@ public class InputListFragment extends AbstractFragment implements AbsListView.O
     public void reloadList() {
 //        initListDate();
 //        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-        listFragment.reload();
+        if (listFragment != null) {
+            listFragment.reload();
+        }
     }
 
     @Override
