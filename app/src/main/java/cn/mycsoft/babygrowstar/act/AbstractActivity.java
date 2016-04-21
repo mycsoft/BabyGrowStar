@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.umeng.analytics.MobclickAgent;
+
 import cn.mycsoft.babygrowstar.StarApp;
 import cn.mycsoft.babygrowstar.StarController;
 
@@ -31,12 +33,14 @@ public abstract class AbstractActivity extends Activity implements StarAppContex
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
 //        StatService.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPause(this);
 //        StatService.onPause(this);
     }
 

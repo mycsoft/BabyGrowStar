@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 
+import com.umeng.analytics.MobclickAgent;
+
 import cn.mycsoft.babygrowstar.act.AbstractActivity;
 import cn.mycsoft.babygrowstar.act.AddActivity;
 import cn.mycsoft.babygrowstar.act.AddRedeemActivity;
@@ -23,6 +25,7 @@ public class StarApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MobclickAgent.setDebugMode(true);
 //        UmengUpdateAgent.setUpdateUIStyle(UpdateStatus.STYLE_NOTIFICATION);
 //        UmengUpdateAgent.setUpdateAutoPopup(false);
 //        UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {

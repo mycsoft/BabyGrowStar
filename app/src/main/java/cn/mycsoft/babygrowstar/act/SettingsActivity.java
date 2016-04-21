@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
+
 import java.util.List;
 
 import cn.mycsoft.babygrowstar.R;
@@ -124,6 +126,18 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     /**
