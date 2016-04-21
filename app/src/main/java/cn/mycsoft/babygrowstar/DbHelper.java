@@ -18,7 +18,7 @@ public class DbHelper extends SQLiteOpenHelper {
     Context context;
 
     public DbHelper(Context context) {
-        super(context, "babyGrowStar", null, 4);
+        super(context, "babyGrowStar", null, 5);
         this.context = context;
     }
 
@@ -51,7 +51,7 @@ public class DbHelper extends SQLiteOpenHelper {
 //        db.beginTransaction();
         //检查任务表是否存在。
         try {
-            db.execSQL("select  count(0) from star_task");
+            db.rawQuery("select  count(0) from star_task", null);
         } catch (Exception e) {
             createFor2(db);
             createFor3(db);
