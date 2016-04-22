@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         android:background="#00eeeeee"
         android:numColumns="3"
-        android:visibility="gone"
         tools:listitem="@layout/task_item_grid_item" />
 
     <TextView
