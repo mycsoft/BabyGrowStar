@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.mycsoft.babygrowstar.frg.PayItemFragment">
+    android:background="@android:color/white"
+    tools:context="cn.mycsoft.babygrowstar.frg.PayItemFragment"
+    tools:showIn="@layout/refs">
 
     <GridView
         android:id="@android:id/list"
@@ -12,9 +14,10 @@
         android:numColumns="2" />
 
     <TextView
-        android:id="@android:id/empty"
+        android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text="宝贝还没有星星呢！" />
 
 </FrameLayout>
