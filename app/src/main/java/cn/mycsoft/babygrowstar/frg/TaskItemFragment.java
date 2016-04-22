@@ -114,7 +114,7 @@ public class TaskItemFragment extends AbstractFragment implements AbsListView.On
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_payitem, container, false);
+        View view = inflater.inflate(R.layout.fragment_tasklist, container, false);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);

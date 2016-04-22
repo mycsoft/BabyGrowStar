@@ -7,7 +7,7 @@
     <!--android:title="@string/pref_header_general" />-->
 
     <header
-        android:fragment="cn.mycsoft.babygrowstar.frg.TaskListFragment"
+        android:fragment="cn.mycsoft.babygrowstar.frg.TaskItemFragment"
         android:title="@string/pref_header_task_manager" />
 
     <!--<header-->
