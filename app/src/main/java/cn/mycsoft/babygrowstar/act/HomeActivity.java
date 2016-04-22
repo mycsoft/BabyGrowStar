@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qihoo.appstore.updatelib.UpdateManager;
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
@@ -143,7 +144,18 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
+        //友盟自动更新
+        upgradeByUmeng();
 
+        //360自动更新
+//        upgradeBy360();
+
+    }
+
+    /**
+     * 使用友盟升级。
+     */
+    private void upgradeByUmeng() {
         UmengUpdateAgent.setUpdateAutoPopup(false);
         UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
             @Override
@@ -167,9 +179,24 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
             }
         });
         UmengUpdateAgent.update(this);
-
     }
 
+
+    /**
+     * 使用360升级；
+     */
+    private void upgradeBy360() {
+//        UpdateManager.setTestMode(8);
+        UpdateManager.checkUpdate(this);
+    }
+
+    /**
+     * 使用360升级；
+     */
+    private void upgradeByBaidu() {
+//        UpdateManager.setTestMode(8);
+        UpdateManager.checkUpdate(this);
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
