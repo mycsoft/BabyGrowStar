@@ -144,11 +144,8 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
-        //友盟自动更新
-        upgradeByUmeng();
-
-        //360自动更新
-//        upgradeBy360();
+        //自动更新
+        upgrade();
 
     }
 
@@ -162,11 +159,11 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
             public void onUpdateReturned(int updateStatus, UpdateResponse updateInfo) {
                 Context mContext = HomeActivity.this;
                 switch (updateStatus) {
-                    case UpdateStatus.Yes: // has update
+                    case UpdateStatus.Yes: // has upgrade
                         ball.setVisibility(View.VISIBLE);
                         UmengUpdateAgent.showUpdateDialog(mContext, updateInfo);
                         break;
-//                    case UpdateStatus.No: // has no update
+//                    case UpdateStatus.No: // has no upgrade
 //                        Toast.makeText(mContext, "没有更新", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case UpdateStatus.NoneWifi: // none wifi
@@ -190,13 +187,23 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         UpdateManager.checkUpdate(this);
     }
 
-    /**
-     * 使用360升级；
-     */
-    private void upgradeByBaidu() {
-//        UpdateManager.setTestMode(8);
-        UpdateManager.checkUpdate(this);
-    }
+//    /**
+//     * 使用应用宝升级；
+//     */
+//    private void upgradeByYinYongBao() {
+////        //该管理类提供下载client和下载设置client的获取接口
+////        TMAssistantDownloadManager downloadManager = TMAssistantDownloadManager.getInstance(getApplicationContext());
+////
+////        //通过管理器创建下载设置对象settingClient
+////        TMAssistantDownloadSettingClient settingClient = downloadManager.getDownloadSDKSettingClient();
+////        settingClient.setDownloadSDKWifiOnly(true); //允许只在wifi下下载，默认值为false
+////        settingClient.setDownloadSDKMaxTaskNum(3);  //允许同时下载最大任务数为3，默认值为5
+////
+//        ApkUpdateManager updateManager = ApkUpdateManager.getInstance();
+//        updateManager.init(this);
+//        updateManager.checkUpdate(Arrays.asList("cn.mycsoft.babygrowstar"));
+//    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -266,13 +273,14 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 //        Toast.makeText(this, "代码测试中...", Toast.LENGTH_SHORT);
     }
 
-    public void update(View v) {
-        UmengUpdateAgent.forceUpdate(this);
-//        update();
+    public void upgrade(View v) {
+//        UmengUpdateAgent.forceUpdate(this);
+        upgrade();
+
     }
 
-    private void update() {
-
+    private void upgrade() {
+        upgradeBy360();
     }
 
 //    @Override
