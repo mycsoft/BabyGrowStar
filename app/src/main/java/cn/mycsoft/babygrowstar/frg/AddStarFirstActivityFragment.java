@@ -26,6 +26,7 @@ public class AddStarFirstActivityFragment extends AbstractFragment implements Ab
      * The fragment's ListView/GridView.
      */
     private AbsListView mListView;
+    private TextView emptyView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
@@ -44,6 +45,7 @@ public class AddStarFirstActivityFragment extends AbstractFragment implements Ab
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
+        emptyView = (TextView) view.findViewById(R.id.empty);
 //        initListDate();
 //        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
@@ -90,6 +92,9 @@ public class AddStarFirstActivityFragment extends AbstractFragment implements Ab
         if (getActivity() != null) {
 //            Cursor c = getController().findInputList();
             Cursor c = getController().findTaskList();
+            if (c.getCount() > 0) {
+                emptyView.setVisibility(View.GONE);
+            }
             mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.task_item_grid_item, c, 1) {
                 @Override
                 public void bindView(View view, Context context, Cursor cursor) {
