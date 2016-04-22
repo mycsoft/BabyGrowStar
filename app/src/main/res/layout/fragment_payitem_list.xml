@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.mycsoft.babygrowstar.frg.PayItemFragment">
+    android:background="@android:color/white"
+    tools:context="cn.mycsoft.babygrowstar.frg.PayItemFragment"
+    tools:showIn="@layout/refs">
 
     <RelativeLayout
         style="@style/home_panel"
@@ -11,50 +13,10 @@
         android:layout_height="match_parent"
         android:background="#fff">
 
-        <RelativeLayout
-            android:id="@+id/title_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8px"
-                android:src="@drawable/star" />
-
-            <TextView
-                android:id="@+id/pay_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:singleLine="true"
-                android:text="奖励"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#F57F17"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="8dp"
-                android:background="#039BE5"
-                android:src="@drawable/ic_add_white_18dp" />
-        </RelativeLayout>
-
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_bar"
+            android:layout_height="match_parent"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:scrollbars="none" />
 

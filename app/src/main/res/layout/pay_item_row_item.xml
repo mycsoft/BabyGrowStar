@@ -21,7 +21,7 @@
                 android:layout_centerVertical="true"
                 android:text="看电视"
                 android:textColor="@color/add_star_text"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
