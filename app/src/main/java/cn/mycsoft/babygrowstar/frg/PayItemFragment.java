@@ -36,6 +36,8 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
      */
     private AbsListView mListView;
 
+    private TextView emptyView;
+
     /**
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
@@ -67,6 +69,9 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
         //如果正在关闭应用或窗口时,调用此方法,可能会出异常.
         if (getActivity() != null) {
             Cursor c = getController().findInputList();
+            if (c.getCount() > 0) {
+                emptyView.setVisibility(View.GONE);
+            }
             mAdapter = new ResourceCursorAdapter(getActivity(), R.layout.pay_item_row_item, c, 1) {
                 @Override
                 public void bindView(View view, Context context, Cursor cursor) {
@@ -117,7 +122,7 @@ public class PayItemFragment extends AbstractFragment implements AbsListView.OnI
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
 //        mListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-
+        emptyView = (TextView) view.findViewById(R.id.empty);
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);

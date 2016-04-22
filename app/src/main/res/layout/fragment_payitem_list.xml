@@ -59,6 +59,7 @@
             android:scrollbars="none" />
 
         <TextView
+            android:id="@+id/empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
@@ -66,7 +67,8 @@
             android:layout_alignParentStart="true"
             android:gravity="center"
             android:overScrollMode="never"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:text="马上给宝贝添加一颗星星吧！" />
 
     </RelativeLayout>
 
