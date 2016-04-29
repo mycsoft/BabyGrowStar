@@ -2,8 +2,10 @@ package cn.mycsoft.babygrowstar;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.umeng.analytics.MobclickAgent;
 
 import cn.mycsoft.babygrowstar.act.AbstractActivity;
@@ -26,7 +28,7 @@ public class StarApp extends Application {
     public void onCreate() {
         super.onCreate();
         MobclickAgent.setDebugMode(true);
-
+        FeedbackAPI.initAnnoy(this, "23355048");
     }
 
     public void addActivity(StarAppContext activity) {
@@ -76,5 +78,11 @@ public class StarApp extends Application {
     public void openAddStarWithTask(Activity activity, int requestCode, long taskId) {
         Intent i = new Intent(activity, AddActivity.class).putExtra("taskId", taskId);
         activity.startActivityForResult(i, requestCode);
+    }
+
+    public void opentFeedback(Context context) {
+        //如果发生错误，请查看logcat日志
+        FeedbackAPI.openFeedbackActivity(this);
+
     }
 }

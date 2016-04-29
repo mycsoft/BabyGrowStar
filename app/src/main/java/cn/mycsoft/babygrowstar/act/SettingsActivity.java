@@ -180,12 +180,18 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        if (position == 1) {
-            showVersion();
+        switch (position) {
+            case 1://版本
+                showVersion();
+                break;
 
-        } else {
+            case 3: //反馈
+                getStarApp().opentFeedback(this);
+                break;
+            default:
             super.onListItemClick(l, v, position, id);
         }
+
     }
 
 
