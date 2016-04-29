@@ -187,6 +187,10 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
      * @param view
      */
     public void openSettingView(View view) {
+        //清理通知
+        popView.setText(null);
+        popView.setVisibility(View.INVISIBLE);
+
         startActivity(new Intent(this, SettingsActivity.class));
     }
 
@@ -249,6 +253,8 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
     @Override
     public void onStarSelected(StarRecord star) {
+
+
         starApp.openEditAct(this, star);
     }
 
@@ -262,9 +268,11 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         public void onReceive(Context context, Intent intent) {
             int count = intent.getIntExtra("unread", 0);
             if (count == 0) {
-                popView.setVisibility(View.GONE);
+                popView.setText(null);
+                popView.setVisibility(View.INVISIBLE);
             } else {
-                popView.setText(String.valueOf(count));
+
+                popView.setText(count > 9 ? "9+" : String.valueOf(count));
                 popView.setVisibility(View.VISIBLE);
             }
 
