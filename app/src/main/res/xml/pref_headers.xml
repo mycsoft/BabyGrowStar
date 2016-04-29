@@ -26,8 +26,5 @@
 
         android:summary="mycsoft_weixin"
         android:title="微信公众号" />
-    <header
 
-        android:summary="欢迎留下您宝贵的意见！"
-        android:title="意见反馈" />
 </preference-headers>

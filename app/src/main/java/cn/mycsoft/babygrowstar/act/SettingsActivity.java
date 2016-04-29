@@ -17,8 +17,6 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
@@ -95,7 +93,13 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
             return true;
         }
     };
+
+    //    /**
+//     * 反馈变化接收器。
+//     */
+//    private FeedbackChangeReceiver feedbackReciver = new FeedbackChangeReceiver();
     protected StarApp starApp;
+    Header feedbackHeader;
     private StarController controller;
 
     /**
@@ -132,12 +136,16 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+//        //注册反馈接收器。
+//        registerReceiver(feedbackReciver, new IntentFilter(StarService.ACTION_FEEDBACK));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+//        //注销反馈接收器。
+//        unregisterReceiver(feedbackReciver);
     }
 
     /**
@@ -156,6 +164,8 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setHomeButtonEnabled(true);
+
+
     }
 
     @Override
@@ -179,7 +189,7 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
     }
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    public void onHeaderClick(Header header, int position) {
         switch (position) {
             case 1://版本
                 showVersion();
@@ -189,10 +199,14 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
                 getStarApp().opentFeedback(this);
                 break;
             default:
-            super.onListItemClick(l, v, position, id);
+                super.onHeaderClick(header, position);
         }
-
     }
+
+//    @Override
+//    protected void onListItemClick(ListView l, View v, int position, long id) {
+//
+//    }
 
 
     @Override
@@ -207,6 +221,8 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.pref_headers, target);
+
+        feedbackHeader = target.get(3);
     }
 
     @Override
@@ -287,4 +303,25 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
             bindPreferenceSummaryToValue(findPreference("sync_frequency"));
         }
     }
+
+//    /**
+//     * 反馈变化接收器。
+//     */
+//    public class FeedbackChangeReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            int count = intent.getIntExtra("unread", 0);
+////                View popView = findViewById(R.id.feedback);
+//            if (count == 0) {
+////                feedbackHeader.id
+//                popView.setVisibility(View.GONE);
+//            } else {
+////                popView.setText(String.valueOf(count));
+//                popView.setVisibility(View.VISIBLE);
+//
+//            }
+//            popView.setVisibility(View.VISIBLE);
+//        }
+//    }
 }

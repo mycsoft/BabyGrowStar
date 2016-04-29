@@ -39,6 +39,7 @@ public class StarService extends Service {
                     Integer i = (Integer) objects[0];
                     if (i != unread) {
                         unread = i;
+                        getSharedPreferences("feedback", MODE_PRIVATE).edit().putInt("unread", unread);
                         //通知页面刷新。发广播
                         Intent intent = new Intent(ACTION_FEEDBACK).putExtra("unread", unread);
                         sendBroadcast(intent);

@@ -187,9 +187,6 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
      * @param view
      */
     public void openSettingView(View view) {
-        //清理通知
-        popView.setText(null);
-        popView.setVisibility(View.INVISIBLE);
 
         startActivity(new Intent(this, SettingsActivity.class));
     }
@@ -256,6 +253,14 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
 
         starApp.openEditAct(this, star);
+    }
+
+    public void openFeedbackView(View view) {
+        //清理通知
+        popView.setText(null);
+        popView.setVisibility(View.INVISIBLE);
+
+        getStarApp().opentFeedback(this);
     }
 
 
