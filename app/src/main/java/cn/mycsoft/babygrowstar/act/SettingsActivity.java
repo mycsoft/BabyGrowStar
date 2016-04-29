@@ -221,8 +221,8 @@ public class SettingsActivity extends PreferenceActivity implements StarAppConte
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.pref_headers, target);
-
-        feedbackHeader = target.get(3);
+//
+//        feedbackHeader = target.get(3);
     }
 
     @Override
