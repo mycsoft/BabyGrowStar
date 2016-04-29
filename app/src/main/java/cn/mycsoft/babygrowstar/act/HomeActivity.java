@@ -1,7 +1,9 @@
 package cn.mycsoft.babygrowstar.act;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 
 import cn.mycsoft.babygrowstar.R;
+import cn.mycsoft.babygrowstar.StarService;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 import cn.mycsoft.babygrowstar.frg.PayItemFragment;
 import cn.mycsoft.babygrowstar.util.SystemUiHider;
@@ -69,8 +72,15 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
     private TextView numberView;
     private TextView todayNumberView;
+    //设置的通知泡泡
+    private TextView popView;
 
     private ImageView ball;
+
+    /**
+     * 反馈变化接收器。
+     */
+    private FeedbackChangeReceiver feedbackReciver = new FeedbackChangeReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,62 +92,8 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         numberView = (TextView) findViewById(R.id.star_number);
         todayNumberView = (TextView) findViewById(R.id.star_numberToday);
         ball = (ImageView) findViewById(R.id.image_ball);
-//        final View controlsView = findViewById(R.id.fullscreen_content_controls);
-//        final View contentView = findViewById(R.id.fullscreen_content);
+        popView = (TextView) findViewById(R.id.pop);
 
-        // Set up an instance of SystemUiHider to control the system UI for
-        // this activity.
-//        mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
-//        mSystemUiHider.setup();
-//        mSystemUiHider
-//                .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-//                    // Cached values.
-//                    int mControlsHeight;
-//                    int mShortAnimTime;
-//
-//                    @Override
-//                    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-//                    public void onVisibilityChange(boolean visible) {
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-//                            // If the ViewPropertyAnimator API is available
-//                            // (Honeycomb MR2 and later), use it to animate the
-//                            // in-layout UI controls at the bottom of the
-//                            // screen.
-//                            if (mControlsHeight == 0) {
-//                                mControlsHeight = controlsView.getHeight();
-//                            }
-//                            if (mShortAnimTime == 0) {
-//                                mShortAnimTime = getResources().getInteger(
-//                                        android.R.integer.config_shortAnimTime);
-//                            }
-//                            controlsView.animate()
-//                                    .translationY(visible ? 0 : mControlsHeight)
-//                                    .setDuration(mShortAnimTime);
-//                        } else {
-//                            // If the ViewPropertyAnimator APIs aren't
-//                            // available, simply show or hide the in-layout UI
-//                            // controls.
-//                            controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
-//                        }
-//
-//                        if (visible && AUTO_HIDE) {
-//                            // Schedule a hide().
-////                            delayedHide(AUTO_HIDE_DELAY_MILLIS);
-//                        }
-//                    }
-//                });
-
-        // Set up the user interaction to manually show or hide the system UI.
-//        contentView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (TOGGLE_ON_CLICK) {
-//                    mSystemUiHider.toggle();
-//                } else {
-//                    mSystemUiHider.show();
-//                }
-//            }
-//        });
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -215,12 +171,12 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         delayedHide(100);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-    }
-
+    /**
+     * 打开添加星星记录列表。
+     *
+     * @param view
+     */
     public void openInputList(View view) {
         startActivity(new Intent(this, InputListAct.class));
     }
@@ -233,14 +189,6 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
     public void openSettingView(View view) {
         startActivity(new Intent(this, SettingsActivity.class));
     }
-
-//    Handler mHideHandler = new Handler();
-//    Runnable mHideRunnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            mSystemUiHider.hide();
-//        }
-//    };
 
     /**
      * Schedules a call to hide() in [delay] milliseconds, canceling any
@@ -259,6 +207,17 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         int today = getController().queryStarTodayTotal();
         numberView.setText(String.valueOf(c));
         todayNumberView.setText(String.valueOf(today));
+
+        //注册反馈接收器。
+        registerReceiver(feedbackReciver, new IntentFilter(StarService.ACTION_FEEDBACK));
+    }
+
+    @Override
+    protected void onPause() {
+        //注销反馈接收器。
+        unregisterReceiver(feedbackReciver);
+        super.onPause();
+
     }
 
     public void openAdd(View v) {
@@ -293,16 +252,31 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         starApp.openEditAct(this, star);
     }
 
+
+    /**
+     * 反馈变化接收器。
+     */
+    public class FeedbackChangeReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int count = intent.getIntExtra("unread", 0);
+            if (count == 0) {
+                popView.setVisibility(View.GONE);
+            } else {
+                popView.setText(String.valueOf(count));
+                popView.setVisibility(View.VISIBLE);
+            }
+
+        }
+    }
+
     //============= 任务清单 ======================
     //实现保存添加星星
     //======== 数据库设计 ==========
     //使用记录
     //
 
-    //TODO 实现使用星星
-    //TODO 实现友盟SDK
-
-    //TODO 实现记录查看
     //TODO 实现密码设置
     //TODO 实现保存到百度云盘
 

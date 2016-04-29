@@ -29,6 +29,9 @@ public class StarApp extends Application {
         super.onCreate();
         MobclickAgent.setDebugMode(true);
         FeedbackAPI.initAnnoy(this, "23355048");
+
+        //启动后台服务。
+        startService(new Intent(this, StarService.class));
     }
 
     public void addActivity(StarAppContext activity) {

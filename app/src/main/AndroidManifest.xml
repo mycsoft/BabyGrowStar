@@ -2,14 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.mycsoft.babygrowstar">
 
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".StarApp"
@@ -17,8 +14,6 @@
         android:icon="@drawable/star"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
-
         <activity
             android:name=".act.HomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -42,8 +37,6 @@
             android:name=".act.InputListAct"
             android:label="@string/title_activity_input_list"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".act.SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -55,35 +48,39 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".act.AddStarFirstActivity"
-            android:label="@string/title_activity_add_star_first"></activity>
+            android:label="@string/title_activity_add_star_first" />
 
-
-        <!--友盟更新-->
+        <!-- 友盟更新 -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="55fe486ee0f55a9a0500124b" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="umeng" />
-        <!--<service-->
-        <!--android:name="com.umeng.update.net.DownloadingService"-->
-        <!--android:process=":DownloadingService" />-->
+        <!-- <service -->
+        <!-- android:name="com.umeng.update.net.DownloadingService" -->
+        <!-- android:process=":DownloadingService" /> -->
 
-        <!--<activity-->
-        <!--android:name="com.umeng.update.UpdateDialogActivity"-->
-        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
 
-        <!--360更新-->
+        <!-- <activity -->
+        <!-- android:name="com.umeng.update.UpdateDialogActivity" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
+
+
+        <!-- 360更新 -->
         <service
             android:name="com.qihoo.appstore.updatelib.CheckUpdateService"
             android:exported="false" />
+
         <activity
             android:name="com.qihoo.appstore.updatelib.CheckUpdateAcitivty"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent" />
 
-
+        <service
+            android:name=".StarService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
-
 
 </manifest>
