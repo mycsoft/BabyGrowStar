@@ -212,7 +212,7 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         //加载宝宝列表
         Cursor cursor = getController().queryBabyList();
         babySpinner.setAdapter(new android.support.v4.widget.SimpleCursorAdapter(
-                this, android.R.layout.simple_dropdown_item_1line,
+                this, R.layout.select,
                 cursor, new String[]{"name"}, new int[]{android.R.id.text1}
         ));
 
