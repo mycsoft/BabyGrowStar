@@ -10,13 +10,18 @@ android {
         applicationId "cn.mycsoft.babygrowstar"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 11
-        versionName '1.1.0'
+        versionCode 12
+        versionName '1.1.1'
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            applicationIdSuffix 'debug'
+            versionNameSuffix 'dev'
         }
     }
     dexOptions {
@@ -30,8 +35,8 @@ android {
             minSdkVersion 14
             applicationId 'cn.mycsoft.babygrowstar.dev'
             targetSdkVersion 23
-            versionCode 11
-            versionName '1.1.0'
+            versionCode 12
+            versionName '1.1.1'
         }
     }
 }
