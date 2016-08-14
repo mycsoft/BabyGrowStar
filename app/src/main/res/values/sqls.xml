@@ -47,4 +47,20 @@
     <string name="sql_select_star_by_id">select * from star_record where _id = %d</string>
     <string name="sql_select_task_by_id">select * from star_task where _id = %d</string>
 
+    <string name="sql_baby_create">
+    create table baby (
+    _id Integer PRIMARY KEY AUTOINCREMENT,
+    `name` Varchar not null,
+    createTime DaLong not null,
+    modifyTime DaLong not null,
+        sexy Varchar,
+    birthday DaLong,
+    `photo` varchar
+    )
+    </string>
+    <string name="sql_star_upgrad_m_baby">
+        alter table star_task add column baby_id integer not null default 1;
+
+    </string>
+
 </resources>

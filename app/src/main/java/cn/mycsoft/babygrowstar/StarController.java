@@ -165,4 +165,13 @@ public class StarController {
     public void deleteTask(Long id) {
         dbh.deleteTask(id);
     }
+
+    /**
+     * 查询出所有的宝贝信息。
+     *
+     * @return
+     */
+    public Cursor queryBabyList() {
+        return dbh.queryAll("baby");
+    }
 }

@@ -27,6 +27,10 @@ public class StarRecord {
      * 说明
      */
     private String desc;
+    /**
+     * 宝宝id
+     */
+    private Integer babyId;
 
     /**
      * 从数据库表行,转换为数据对象.
@@ -37,6 +41,7 @@ public class StarRecord {
     public static StarRecord parse(Cursor cursor) {
         StarRecord star = new StarRecord();
         star.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+        star.setBabyId(cursor.getInt(cursor.getColumnIndex("baby_id")));
         star.setDesc(cursor.getString(cursor.getColumnIndex("desc")));
         star.setTime(new Date(cursor.getLong(cursor.getColumnIndex("time"))));
         star.setType(Type.valueOf(cursor.getString(cursor.getColumnIndex("type"))));
@@ -95,23 +100,40 @@ public class StarRecord {
 
     public ContentValues toContentValues() {
         ContentValues cv = new ContentValues();
-        if (id != null){
-            cv.put("_id",id);
+        if (id != null) {
+            cv.put("_id", id);
         }
 
         cv.put("number", number);
-        if (time != null){
-            cv.put("time",time.getTime());
+        if (time != null) {
+            cv.put("time", time.getTime());
         }
-        if (desc != null){
-            cv.put("`desc`",desc);
+        if (desc != null) {
+            cv.put("`desc`", desc);
         }
-        if (type != null){
-            cv.put("type",type.toString());
+        if (type != null) {
+            cv.put("type", type.toString());
+        }
+
+        if (babyId != null) {
+            cv.put("baby_id", babyId);
         }
         return cv;
     }
 
+    /**
+     * 宝宝id
+     */
+    public Integer getBabyId() {
+        return babyId;
+    }
+
+    /**
+     * 宝宝id
+     */
+    public void setBabyId(Integer babyId) {
+        this.babyId = babyId;
+    }
 
 
     /**

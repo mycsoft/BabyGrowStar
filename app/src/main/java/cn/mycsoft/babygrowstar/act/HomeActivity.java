@@ -4,10 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.qihoo.appstore.updatelib.UpdateManager;
@@ -77,6 +79,8 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
 
     private ImageView ball;
 
+    private Spinner babySpinner;
+
     /**
      * 反馈变化接收器。
      */
@@ -93,7 +97,7 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
         todayNumberView = (TextView) findViewById(R.id.star_numberToday);
         ball = (ImageView) findViewById(R.id.image_ball);
         popView = (TextView) findViewById(R.id.pop);
-
+        babySpinner = (Spinner) findViewById(R.id.babySpinner);
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -204,10 +208,22 @@ public class HomeActivity extends AbstractActivity implements PayItemFragment.On
     @Override
     protected void onResume() {
         super.onResume();
+
+        //加载宝宝列表
+        Cursor cursor = getController().queryBabyList();
+        babySpinner.setAdapter(new android.support.v4.widget.SimpleCursorAdapter(
+                this, android.R.layout.simple_dropdown_item_1line,
+                cursor, new String[]{"name"}, new int[]{android.R.id.text1}
+        ));
+
+
+
+
         int c = getController().queryStarTotal();
         int today = getController().queryStarTodayTotal();
         numberView.setText(String.valueOf(c));
         todayNumberView.setText(String.valueOf(today));
+
 
         //注册反馈接收器。
         registerReceiver(feedbackReciver, new IntentFilter(StarService.ACTION_FEEDBACK));

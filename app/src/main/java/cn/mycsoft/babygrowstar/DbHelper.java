@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.Date;
 
+import cn.mycsoft.babygrowstar.entity.Baby;
 import cn.mycsoft.babygrowstar.entity.StarRecord;
 import cn.mycsoft.babygrowstar.entity.StarTask;
 
@@ -18,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
     Context context;
 
     public DbHelper(Context context) {
-        super(context, "babyGrowStar", null, 5);
+        super(context, "babyGrowStar", null, 6);
         this.context = context;
     }
 
@@ -29,6 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
         createFor1(db);
         createFor2(db);
         createFor3(db);
+        createFor6(db);
 //        db.close();
 //        db.endTransaction();
     }
@@ -77,6 +79,27 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * 升级到6版数据库，加入多宝宝的设置。
+     *
+     * @param db
+     */
+    private void createFor6(SQLiteDatabase db) {
+        //升级到多宝宝版
+        db.execSQL(context.getResources().getString(R.string.sql_baby_create));
+        //增加第一个默认的宝宝
+        Baby baby = new Baby();
+        baby.setName("宝宝");
+        baby.setCreateTime(new Date());
+        baby.setModifyTime(new Date());
+//        insertBaby(baby);
+        db.insert("baby", null, baby.toContentValues());
+        //星星记录中增加宝宝的关联
+        db.execSQL(context.getResources().getString(R.string.sql_star_upgrad_m_baby));
+
+    }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -89,6 +112,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 if (oldVersion == 3) {
                     doFix3Bug(db);
                 }
+            case 4:
+            case 5:
+                //升级到多宝宝版
+                createFor6(db);
 
 
         }
@@ -115,6 +142,17 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         return db.rawQuery(sql, null);
 
+    }
+
+    /**
+     * 查询一个列表中的所有信息。
+     *
+     * @param table
+     * @return
+     */
+    public Cursor queryAll(String table) {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.rawQuery("select * from " + table, null);
     }
 
     /**
@@ -212,6 +250,27 @@ public class DbHelper extends SQLiteOpenHelper {
         try {
             long count = db.delete("star_task", "_id = ?",
                     new String[]{String.valueOf(id)});
+
+//        db.close();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+
+        }
+    }
+
+    /**
+     * 插入宝宝信息。
+     *
+     * @param baby
+     * @return
+     */
+    private long insertBaby(Baby baby) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.insert("baby", null, baby.toContentValues());
 
 //        db.close();
             db.setTransactionSuccessful();
