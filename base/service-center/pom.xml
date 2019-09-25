@@ -8,7 +8,7 @@
 		<version>2.1.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>name.myc.bgs</groupId>
+	<groupId>name.myc.bgs.base</groupId>
 	<artifactId>service-center</artifactId>
 	<version>0.0.1</version>
 	<name>service-center</name>
