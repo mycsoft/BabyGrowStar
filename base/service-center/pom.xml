@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>name.myc.bgs</groupId>
 	<artifactId>service-center</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>service-center</name>
 	<description>注册中心</description>
 
