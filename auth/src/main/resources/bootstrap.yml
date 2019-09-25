@@ -1,7 +1,7 @@
 # 服务名称
 spring:
     application:
-        name: application
+        name: bgs-auth
     cloud:
         config:
             uri: http://localhost:10001/
