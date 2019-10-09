@@ -7,7 +7,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>service-center</module>
-        <module>model</module>
         <module>config-server</module>
         <module>api-getway</module>
     </modules>
