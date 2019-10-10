@@ -11,6 +11,11 @@ spring:
             discovery:
                 enable: true
                 service-id: config-server
+    boot:
+        admin:
+            ui:
+                title: MYC-BGS Admin
+                brand: <img src="assets/img/icon-spring-boot-admin.svg"><span>MYC-BGS Admin</span>
 # 服务端口号
 server:
     port: 13000
