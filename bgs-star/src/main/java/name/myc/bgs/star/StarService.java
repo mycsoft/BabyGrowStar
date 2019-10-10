@@ -5,6 +5,7 @@
  */
 package name.myc.bgs.star;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import name.myc.bgs.common.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,11 +32,18 @@ public class StarService {
      * @param weixin
      * @return
      */
+    @HystrixCommand(fallbackMethod = "canntFindAccountByWeixin")
     public Account findAccountByWeixin(String weixin) {
         //从权限服务中查询微信号对应的账号.
         Account account = restTemplate.getForObject(
                 "http://{1}/account?weixin={2}", Account.class, authServiceId, weixin);
         return account;
+    }
+
+    public Account canntFindAccountByWeixin(String weixin) {
+//        return "Can't find account, may be auth service is down!"
+        System.out.println("=======================> 启动熔断.");
+        return null;
     }
 
     /**
