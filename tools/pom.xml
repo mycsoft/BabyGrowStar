@@ -10,5 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>hystrix-dashboard</module>
+        <module>admin-server</module>
     </modules>
 </project>
