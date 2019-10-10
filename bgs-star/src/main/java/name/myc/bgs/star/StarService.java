@@ -45,7 +45,8 @@ public class StarService {
      * @return
      */
     public int findDefaultBabyStarCount(Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //FIXME 这是一段测试代码.
+        return account == null ? -1 : 100;
     }
 
 }

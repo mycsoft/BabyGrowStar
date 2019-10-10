@@ -28,8 +28,6 @@ public class StarController {
 
     @RequestMapping("/star/count")
     public Object count(String weixin) {
-        //TODO 调用Service.
-
         //根据微信号查询出用户。
         Account account = service.findAccountByWeixin(weixin);
         //根据用户取出默认账本。
