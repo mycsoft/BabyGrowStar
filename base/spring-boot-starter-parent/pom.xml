@@ -9,7 +9,7 @@
     </parent>
     <groupId>name.myc.bgs.base</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>pom</packaging>
     <description>BGS基础的父类。本父类是继承自spring boot.</description>
     
@@ -35,6 +35,31 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- docker-maven-plugin插件(不带Dockerfile文件) -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <!--用于指定镜像名称-->
+                    <imageName>mycsoft/bgs/${project.name}:${project.version}-openjdk-8u222-jre</imageName>
+                    <!--用于指定基础镜像，相当于Dockerfile中的FROM指令-->
+                    <baseImage>openjdk:8u222-jre</baseImage>
+                    <!--相当于Dockerfile的ENTRYPOINT指令-->
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <!--是否跳过docker build-->
+                    <!--<skipDockerBuild>true</skipDockerBuild>-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <!--用于指定需要复制的根目录，${project.build.directory}表示target目录-->
+                            <directory>${project.build.directory}</directory>
+                            <!--用于指定需要复制的文件。${project.build.finalName}.jar指的是打包后的jar包文件。-->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

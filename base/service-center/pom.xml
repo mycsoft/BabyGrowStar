@@ -11,7 +11,7 @@
     <parent>
         <groupId>name.myc.bgs.base</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <relativePath/>
     </parent>
     <groupId>name.myc.bgs.base</groupId>
