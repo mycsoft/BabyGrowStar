@@ -7,19 +7,19 @@ spring:
             uri: http://localhost:10001/
             profile: local
             label: master
-            discovery:
-                enable: true
-                service-id: bgs-config-server
+#            discovery:
+#                enable: true
+#                service-id: bgs-config-server
 # 服务端口号
 server:
     port: 11000
 
 #Eureka 相关配置
-eureka:
-    client:
-        service-url:
-            defaultZone: http://localhost:10000/eureka/
-#        # 是否从其他的服务中心同步服务列表
-#        fetch-registry: false
-        # 是否把自己作为服务注册到其他服务注册中心
-        register-with-eureka: true
+#eureka:
+#    client:
+#        service-url:
+#            defaultZone: http://localhost:10000/eureka/
+##        # 是否从其他的服务中心同步服务列表
+##        fetch-registry: false
+#        # 是否把自己作为服务注册到其他服务注册中心
+#        register-with-eureka: true
