@@ -9,6 +9,7 @@
         <module>service-center</module>
         <module>config-server</module>
         <module>api-getway</module>
+        <module>spring-boot-starter-parent</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
