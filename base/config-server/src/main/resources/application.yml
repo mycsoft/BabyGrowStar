@@ -13,7 +13,8 @@ spring:
             server:
                 bootstrap: true
                 native:
-                    searchLocations: file:D:\\dev\\github\\BGS\\bgs-server\\base\\config-server\\src\\main\\config
+#                    searchLocations: file:D:\\dev\\github\\BGS\\bgs-server\\base\\config-server\\src\\main\\config
+                    searchLocations: classpath:bgs-config/
         
 
   
@@ -21,8 +22,9 @@ spring:
 eureka:
     client:
         service-url:
-            defaultZone: http://localhost:10000/eureka/
-        # 是否从其他的服务中心同步服务列表
-        fetch-registry: false
+#            defaultZone: http://localhost:10000/eureka/
+            defaultZone: http://192.168.10.100:10000/eureka/
+#        # 是否从其他的服务中心同步服务列表
+#        fetch-registry: false
         # 是否把自己作为服务注册到其他服务注册中心
         register-with-eureka: true
