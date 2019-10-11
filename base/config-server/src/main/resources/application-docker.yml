@@ -1,0 +1,14 @@
+#Eureka 相关配置
+eureka:
+    client:
+        service-url:
+            defaultZone: http://172.17.0.2:10000/eureka/
+            
+# 服务名称
+spring:
+    cloud:
+        config:
+            server:
+                bootstrap: true
+                native:
+                    searchLocations: file:/config
