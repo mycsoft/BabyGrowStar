@@ -10,6 +10,7 @@
         <module>common/model</module>
         <module>auth</module>
         <module>tools</module>
+        <module>bgs-star</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
