@@ -1,7 +1,7 @@
 # 服务名称
 spring:
     application:
-        name: bgs-star
+        name: bgs-admin-server
     cloud:
         config:
             uri: @config.server.url@
@@ -12,7 +12,7 @@ spring:
                 service-id: bgs-config-server
 # 服务端口号
 server:
-    port: 11001
+    port: 13000
     
 #logging:
 #    level:
