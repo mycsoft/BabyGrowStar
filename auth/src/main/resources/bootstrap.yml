@@ -1,11 +1,12 @@
 # 服务名称
 spring:
+    profile: @profiles.active@
     application:
         name: bgs-auth
     cloud:
         config:
-            uri: http://localhost:10001/
-            profile: local
+            uri: @config.server.url@
+            profile: @config.profile@
             label: master
             discovery:
                 enable: true

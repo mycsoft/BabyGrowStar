@@ -5,7 +5,7 @@
     <parent>
         <groupId>name.myc.bgs.base</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
         <relativePath/>
     </parent>
     <groupId>name.myc.bgs</groupId>
@@ -14,19 +14,23 @@
     <name>auth</name>
     <description>权限服务</description>
 
-<!--    <properties>
+    <!--    <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
     </properties>-->
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -34,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
         <dependency>
@@ -43,17 +47,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>name.myc.bgs.common</groupId>
             <artifactId>model</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>
-<!--
+    <!--
     <dependencyManagement>
         <dependencies>
             <dependency>
