@@ -1,0 +1,9 @@
+# 服务名称
+spring:
+    cloud:
+        config:
+            uri: http://172.17.0.3:10001/
+            profile: docker
+#            discovery:
+#                enable: true
+#                service-id: bgs-config-server
