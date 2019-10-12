@@ -1,13 +1,13 @@
-# 服务名称
-spring:
-    cloud:
-        # 统一配置服务
-        config:
-            uri: http://172.17.0.3:10001/
-            profile: docker
-    
-eureka:
-    client:
-        service-url:
-            defaultZone: http://172.17.0.2:10000/eureka/
+## 服务名称
+#spring:
+#    cloud:
+#        # 统一配置服务
+#        config:
+#            uri: http://172.17.0.3:10001/
+#            profile: docker
+#    
+#eureka:
+#    client:
+#        service-url:
+#            defaultZone: http://172.17.0.2:10000/eureka/
 

@@ -5,7 +5,7 @@
     <parent>
         <groupId>name.myc.bgs.base</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.4</version>
         <relativePath/>
     </parent>
     <groupId>name.myc.bgs.tools</groupId>
@@ -28,6 +28,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
                 
         <dependency>
