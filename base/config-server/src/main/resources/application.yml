@@ -22,7 +22,8 @@ spring:
 eureka:
     client:
         service-url:
-            defaultZone: http://localhost:10000/eureka/
+            defaultZone: @eureka.server.url@
+#            defaultZone: http://localhost:10000/eureka/
 #            defaultZone: http://172.17.0.2:10000/eureka/
 #        # 是否从其他的服务中心同步服务列表
 #        fetch-registry: false
