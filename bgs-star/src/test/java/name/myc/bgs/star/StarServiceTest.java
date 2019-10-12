@@ -5,6 +5,7 @@
  */
 package name.myc.bgs.star;
 
+import com.google.gson.Gson;
 import name.myc.bgs.common.model.Account;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +34,8 @@ public class StarServiceTest {
         String weixin = "1";
 //        Account expResult = null;
         Account result = instance.findAccountByWeixin(weixin);
-        assertNotNull("没有查询到账号信息,请确认权限服务已经启动且微信号正确.",result);
+        assertNotNull("没有查询到账号信息,请确认权限服务已经启动且微信号正确.", result);
+        System.out.println(new Gson().toJson(result));
     }
 
     /**

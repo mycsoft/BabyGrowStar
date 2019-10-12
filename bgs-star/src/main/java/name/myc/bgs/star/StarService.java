@@ -7,6 +7,8 @@ package name.myc.bgs.star;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import name.myc.bgs.common.model.Account;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class StarService {
 
+    private final Logger LOG = LoggerFactory.getLogger(StarService.class);
     @Autowired
     RestTemplate restTemplate;
 
@@ -35,14 +38,20 @@ public class StarService {
     @HystrixCommand(fallbackMethod = "canntFindAccountByWeixin")
     public Account findAccountByWeixin(String weixin) {
         //从权限服务中查询微信号对应的账号.
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Send request http://%s/account?weixin=%s", authServiceId, weixin));
+        }
         Account account = restTemplate.getForObject(
                 "http://{1}/account?weixin={2}", Account.class, authServiceId, weixin);
         return account;
     }
 
-    public Account canntFindAccountByWeixin(String weixin) {
+    public Account canntFindAccountByWeixin(String weixin, Throwable e) {
 //        return "Can't find account, may be auth service is down!"
-        System.out.println("=======================> 启动熔断.");
+//        System.out.println("=======================> 启动熔断.");
+        if (LOG.isWarnEnabled()) {
+            LOG.warn("=======================> 启动熔断.", e);
+        }
         return null;
     }
 
