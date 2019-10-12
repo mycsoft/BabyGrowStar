@@ -23,3 +23,5 @@ eureka:
 #        fetch-registry: false
         # 是否把自己作为服务注册到其他服务注册中心
         register-with-eureka: true
+    instance:
+        prefer-ip-address: true
